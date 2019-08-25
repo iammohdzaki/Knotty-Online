@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1004587281039",
+    "firebase_url": "https://knotty-online-e4ca8.firebaseio.com",
+    "project_id": "knotty-online-e4ca8",
+    "storage_bucket": "knotty-online-e4ca8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004587281039:android:21376383cda06447",
+        "android_client_info": {
+          "package_name": "com.zaphlabs.knotty_online"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004587281039-rh7n0d21trpbt527f85carp8nf9pi6a2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zaphlabs.knotty_online",
+            "certificate_hash": "9e8f55db60e996076e1b24fcc63991cdc0fde2b9"
+          }
+        },
+        {
+          "client_id": "1004587281039-7ccvnq6pgehkbuld4qndjehg1d85aeot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj-BOMJKQh5sLTPSnZJVlPFnPDF2oUlRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004587281039-7ccvnq6pgehkbuld4qndjehg1d85aeot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
