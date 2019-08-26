@@ -24,6 +24,10 @@ allprojects {
     }
 }
 
+ext{
+    materialVersion = "1.0.0"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

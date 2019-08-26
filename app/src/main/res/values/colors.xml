@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#f56258</color>
+    <color name="colorPrimaryDark">#FFF</color>
+    <color name="colorAccent">#f56258</color>
+
+    <color name="popup_bg_color">#ffffff</color>
+    <color name="popup_heading_color">#99474747</color>
+    <color name="popup_message_color">#474747</color>
+    <color name="popup_btn_bg_color">#ffffff</color>
+    <color name="popup_btn_bg_pressed_color">#b2b2b2</color>
+    <color name="popup_btn_positive_color">#ffffff</color>
+    <color name="popup_btn_negative_color">#f56258</color>
+
+    <!-- grey scale -->
+    <color name="white">#FFFFFF</color>
+    <color name="gray_light">#DBDBDB</color>
+    <color name="gray">#939393</color>
+    <color name="gray_dark">#5F5F5F</color>
+    <color name="black">#000</color>
+    <color name="pure_black">#000</color>
+    <color name="charcoal_grey">#333c40</color>
+    <color name="transparent">#0000</color>
+    <color name="red">#f44336</color>
+
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="heading_text">@color/white</color>
+    <color name="icons">@color/white</color>
+    <color name="divider">#BDBDBD</color>
 </resources>

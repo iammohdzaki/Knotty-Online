@@ -1,3 +1,68 @@
 <resources>
     <string name="app_name">Knotty-Online</string>
+    <!-- Root Message -->
+    <string name="error_device_rooted">This device is rooted. We are not responsible for any kind of data loss and hack.
+        Use it at your own risk!!
+    </string>
+
+    <string-array name="security_questions">
+        <item>What is your favorite food ?</item>
+        <item>What is your favorite animal ?</item>
+        <item>What is your favorite fruit ?</item>
+    </string-array>
+
+    <!-- Dialog -->
+    <string name="text_retry">Retry</string>
+    <string name="text_exit">Exit</string>
+    <string name="text_ok">Ok</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_proceed">Proceed</string>
+    <string name="text_loading">Loading…</string>
+    <string name="text_update">Update</string>
+
+    <!-- Log In / Sign Up Activity -->
+    <string name="sign_up_text">Sign Up</string>
+    <string name="fullname_text">FullName</string>
+    <string name="security_question_text">What\'s your favorite food ?</string>
+    <style name="security_title_text">Security Question</style>
+    <string name="confirm_password_text">Confirm Password</string>
+    <string name="password_text">Password</string>
+    <string name="log_in_text">Log In</string>
+    <string name="pick_one">Pick One Question</string>
+    <string name="forgot_password_text">Forgot Password</string>
+    <string name="finger_print_info">Place Your Finger Print On Your Sensor</string>
+    <string name="finger_auth">Finger Print Authentication</string>
+
+    <!-- Editor Activity-->
+    <string name="account_title_text">Account Title</string>
+    <string name="account_user_name_text">Account User Name</string>
+    <string name="account_password">Account Password</string>
+    <string name="account_email_text">Account Email</string>
+    <string name="note_text">Note</string>
+    <string name="save_account_text">Save Account</string>
+    <string name="manage_account">Manage Accounts</string>
+    <string name="add_account_editor">Add Account</string>
+    <string name="title_error_empty">Title Cannot Be Empty!</string>
+    <string name="user_error_empty">User Name Cannot Be Empty!</string>
+    <string name="password_error_empty">Password Cannot Be Empty!</string>
+    <string name="email_error_empty">Email Cannot Be Empty!</string>
+    <string name="note_empty_error_empty">Note Cannot Be Empty!</string>
+    <string name="Security_text">Remember Your Answer,It Will Be Used For Password Reset</string>
+    <string name="account_deleted_text">Account has been Deleted!</string>
+    <string name="update_account_text">Update Account</string>
+    <string name="are_you_sure_delete">Are You Sure To Delete ?</string>
+    <string name="yes">Yes</string>
+    <string name="account_deleted_success">Account Deleted Successfully!</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="settings_text">Settings</string>
 </resources>
