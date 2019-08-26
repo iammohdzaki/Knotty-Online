@@ -24,7 +24,9 @@
     <string name="sign_up_text">Sign Up</string>
     <string name="fullname_text">FullName</string>
     <string name="security_question_text">What\'s your favorite food ?</string>
+
     <style name="security_title_text">Security Question</style>
+
     <string name="confirm_password_text">Confirm Password</string>
     <string name="password_text">Password</string>
     <string name="log_in_text">Log In</string>
