@@ -22,6 +22,7 @@
     <color name="charcoal_grey">#333c40</color>
     <color name="transparent">#0000</color>
     <color name="red">#f44336</color>
+    <color name="success">#26840a</color>
 
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
