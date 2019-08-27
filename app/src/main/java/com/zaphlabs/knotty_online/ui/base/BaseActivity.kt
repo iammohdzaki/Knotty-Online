@@ -1,5 +1,7 @@
 package com.zaphlabs.knotty_online.ui.base
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +10,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.zaphlabs.knotty_online.R
+import com.zaphlabs.knotty_online.ui.customView.CustomAlertDialog
 import com.zaphlabs.knotty_online.ui.customView.MaterialEditText
 import com.zaphlabs.knotty_online.utils.NetworkUtils
 import com.zaphlabs.knotty_online.utils.STATUS_CODES.Companion.FAILED
@@ -17,9 +20,14 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 abstract class BaseActivity : AppCompatActivity(),BaseNavigator {
 
+    private var alertDialogBuilder: AlertDialog.Builder? = null
+    private var customAlertDialogBuilder: CustomAlertDialog.Builder? = null
+    private var dialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        alertDialogBuilder = AlertDialog.Builder(this)
+        customAlertDialogBuilder = CustomAlertDialog.Builder(this)
     }
 
 
@@ -48,12 +56,12 @@ abstract class BaseActivity : AppCompatActivity(),BaseNavigator {
         showSnackbar(getString(messageResId),barStatus)
     }
 
-    override fun showSnackbar(message: String, snackbarStatus: Int) {
+    override fun showSnackbar(message: String, barStatus: Int) {
         val restoreBar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         val view = restoreBar.view
         when {
-            SUCCESS == snackbarStatus -> view.setBackgroundColor(ContextCompat.getColor(this@BaseActivity, R.color.success))
-            FAILED == snackbarStatus -> view.setBackgroundColor(ContextCompat.getColor(this@BaseActivity, R.color.red))
+            SUCCESS == barStatus -> view.setBackgroundColor(ContextCompat.getColor(this@BaseActivity, R.color.success))
+            FAILED == barStatus -> view.setBackgroundColor(ContextCompat.getColor(this@BaseActivity, R.color.red))
             else -> view.setBackgroundColor(ContextCompat.getColor(this@BaseActivity, R.color.colorAccent))
         }
         restoreBar.show()
@@ -78,4 +86,25 @@ abstract class BaseActivity : AppCompatActivity(),BaseNavigator {
         showErrorOnEditText(editText, getString(errorMessageResId))
     }
 
+    override fun showConfirmAlertDialog(title: String, imageView: String, message: String, onClickListener: CustomAlertDialog.CustomDialogInterface.OnClickListener) {
+        showConfirmAlertDialog(title, imageView, message, getString(R.string.text_ok), getString(R.string.text_cancel), onClickListener)
+    }
+
+    override fun showConfirmAlertDialog(titleResId: Int, imageView: Int, messageResId: Int, onClickListener: CustomAlertDialog.CustomDialogInterface.OnClickListener) {
+        showConfirmAlertDialog(getString(titleResId), getString(imageView), getString(messageResId), onClickListener)
+    }
+
+    override fun showConfirmAlertDialog(titleResId: String, optionaImage: String, messageResId: String, positiveTextId: String, negativeTextId: String, onClickListener: CustomAlertDialog.CustomDialogInterface.OnClickListener) {
+        dialog?.let {
+            if (dialog!!.isShowing) {
+                dialog!!.dismiss()
+            }
+        }
+        dialog = customAlertDialogBuilder!!.setMessage(messageResId)
+            .setTitle(titleResId)
+            .setOptionalImage(optionaImage)
+            .setPositiveButton(positiveTextId, onClickListener)
+            .setNegativeButton(negativeTextId, null)
+            .show()
+    }
 }

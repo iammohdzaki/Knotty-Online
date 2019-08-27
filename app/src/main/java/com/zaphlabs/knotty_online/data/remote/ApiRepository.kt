@@ -1,4 +1,7 @@
 package com.zaphlabs.knotty_online.data.remote
 
-class ApiRepository {
+import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
+
+class ApiRepository() {
+
 }
