@@ -29,4 +29,5 @@
     <color name="heading_text">@color/white</color>
     <color name="icons">@color/white</color>
     <color name="divider">#BDBDBD</color>
+    <color name="bg_circle_default">#666666</color>
 </resources>

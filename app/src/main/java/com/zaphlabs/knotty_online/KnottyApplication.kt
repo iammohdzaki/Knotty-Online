@@ -18,7 +18,7 @@ class KnottyApplication : Application() {
         //Calligraphy init for fonts
         CalligraphyConfig.initDefault(
             CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Montserrat-Regular.ttf")
+                .setDefaultFontPath("font/Montserrat-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         )
