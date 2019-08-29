@@ -1,9 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.auth.SignUpActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+                name="viewmodel"
+                type="com.zaphlabs.knotty_online.ui.auth.AuthViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true">
+
+        <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:lottie_fileName="login.json"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sign_up_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_padding_size_large"
+                android:text="@string/sign_up_text"
+                android:textAppearance="@style/MontserratBold"
+                android:textSize="@dimen/font_xxxlarge"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.32" />
+
+        <com.zaphlabs.knotty_online.ui.customView.MaterialEditText
+                android:id="@+id/metSignUpName"
+                style="@style/edit_text_view"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/margin_padding_size_medium"
+                android:hint="@string/fullname_text"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@id/metSignUpQuestion"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_text"
+                app:met_floatingLabelText="FULL NAME" />
+
+        <com.zaphlabs.knotty_online.ui.customView.MaterialEditText
+                android:id="@+id/metSignUpQuestion"
+                style="@style/edit_text_view"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/margin_padding_size_medium"
+                android:hint="Email"
+                app:layout_constraintBottom_toTopOf="@id/metSignUpPassword"
+                app:layout_constraintTop_toBottomOf="@id/metSignUpName"
+                app:met_floatingLabelText="Email" />
+
+        <com.zaphlabs.knotty_online.ui.customView.MaterialEditText
+                android:id="@+id/metSignUpPassword"
+                style="@style/edit_text_view"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/margin_padding_size_medium"
+                android:hint="@string/password_text"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toTopOf="@id/metSignUpConfirmPassword"
+                app:layout_constraintTop_toBottomOf="@id/metSignUpQuestion"
+                app:met_floatingLabelText="PASSWORD" />
+
+        <com.zaphlabs.knotty_online.ui.customView.MaterialEditText
+                android:id="@+id/metSignUpConfirmPassword"
+                style="@style/edit_text_view"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/margin_padding_size_medium"
+                android:hint="@string/confirm_password_text"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toTopOf="@id/btnSignUp"
+                app:layout_constraintTop_toBottomOf="@id/metSignUpPassword"
+                app:met_floatingLabelText="CONFIRM PASSWORD" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_padding_size_large"
+                android:onClick="@{(v) -> viewmodel.signUpUser()}"
+                android:background="@drawable/selector_btn"
+                android:text="@string/sign_up_text"
+                android:textAppearance="@style/MontserratSemiBold"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/metOpenSignUp"
+                app:layout_constraintTop_toBottomOf="@id/metSignUpConfirmPassword" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/metOpenSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/margin_padding_size_large"
+                android:text="Already have an account.\nLogin Here"
+                android:textAppearance="@style/MontserratBold"
+                android:textSize="@dimen/font_xlarge"
+                android:onClick="@{(v) -> viewmodel.goToLogin(v)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
