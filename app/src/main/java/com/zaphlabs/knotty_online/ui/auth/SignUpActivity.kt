@@ -9,6 +9,7 @@ import com.zaphlabs.knotty_online.databinding.ActivitySignUpBinding
 import com.zaphlabs.knotty_online.ui.base.BaseActivity
 import com.zaphlabs.knotty_online.ui.home.HomeActivity
 import com.zaphlabs.knotty_online.utils.STATUS_CODES.Companion.FAILED
+import com.zaphlabs.knotty_online.utils.STATUS_CODES.Companion.SUCCESS
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -29,20 +30,17 @@ class SignUpActivity : BaseActivity() ,AuthListener,KodeinAware{
     }
 
     override fun onStarted() {
-        //Progress Bar Visible
-        Intent(this, HomeActivity::class.java).also {
-            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(it)
-        }
+        showProgress()
     }
 
     override fun onSuccess() {
-        //Progress BAr Gone
-       //Go to Home
+        hideProgress()
+        showSnackbar("Success", SUCCESS)
+        startActivity(Intent(this@SignUpActivity,HomeActivity::class.java))
     }
 
     override fun onFailure(message: String) {
-        //Progress BAr Gone
+        hideProgress()
         showSnackbar(message,FAILED)
     }
 }

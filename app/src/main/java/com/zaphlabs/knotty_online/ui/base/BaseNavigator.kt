@@ -8,6 +8,8 @@ interface BaseNavigator {
     fun hideKeyboard()
     fun isNetworkConnected()
     fun onBackPress()
+    fun showProgress()
+    fun hideProgress()
     fun showSnackbar(message: String, barStatus: Int)
     fun showSnackbar(messageResId: Int, barStatus: Int)
     fun showToast(message: String)

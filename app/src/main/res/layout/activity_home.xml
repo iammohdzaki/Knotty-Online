@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+                name="viewModel"
+                type="com.zaphlabs.knotty_online.ui.home.HomeViewModel" />
+    </data>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -83,3 +89,4 @@
             android:src="@drawable/ic_add_account"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

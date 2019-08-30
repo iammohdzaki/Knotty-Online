@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.zaphlabs.knotty_online.R
 import com.zaphlabs.knotty_online.ui.customView.CustomAlertDialog
 import com.zaphlabs.knotty_online.ui.customView.MaterialEditText
+import com.zaphlabs.knotty_online.ui.customView.ProgressDialog
 import com.zaphlabs.knotty_online.utils.NetworkUtils
 import com.zaphlabs.knotty_online.utils.STATUS_CODES.Companion.FAILED
 import com.zaphlabs.knotty_online.utils.STATUS_CODES.Companion.SUCCESS
@@ -50,6 +51,14 @@ abstract class BaseActivity : AppCompatActivity(),BaseNavigator {
             val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    override fun showProgress() {
+        ProgressDialog.show(this@BaseActivity)
+    }
+
+    override fun hideProgress() {
+        ProgressDialog.dismiss()
     }
 
     override fun showSnackbar(messageResId: Int, barStatus: Int) {
