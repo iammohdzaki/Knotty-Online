@@ -67,5 +67,6 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="settings_text">Settings</string>
-    <string name="signupfromlogin"><small>Don\'t have an account.</small><big>Sign Up?</big></string>
+    <string name="signupfromlogin">Don\'t have an account.Sign Up?</string>
+    <string name="already_account">Already have an account.Login Here</string>
 </resources>

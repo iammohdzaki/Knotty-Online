@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_login"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/margin_padding_size_medium"
             android:hint="Email"
-            android:inputType="textPassword"
             app:layout_constraintBottom_toTopOf="@id/metLogInPassword"
             app:layout_constraintTop_toBottomOf="@id/log_in_text"
             app:met_floatingLabelText="Email" />
