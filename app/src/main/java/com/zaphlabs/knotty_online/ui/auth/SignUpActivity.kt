@@ -46,8 +46,8 @@ class SignUpActivity : BaseActivity() ,AuthListener,KodeinAware{
 
     override fun onStart() {
         super.onStart()
-        viewModel.user.let{
+       /* viewModel.user.let{
             startActivity(Intent(this@SignUpActivity, HomeActivity::class.java))
-        }
+        }*/
     }
 }

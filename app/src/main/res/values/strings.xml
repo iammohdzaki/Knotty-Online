@@ -21,8 +21,8 @@
     <string name="text_update">Update</string>
 
     <!-- Log In / Sign Up Activity -->
-    <string name="sign_up_text">Sign Up</string>
-    <string name="fullname_text">FullName</string>
+    <string name="sign_up_text">Sign Up It\'s Free</string>
+    <string name="fullname_text">Your Name</string>
     <string name="security_question_text">What\'s your favorite food ?</string>
 
     <style name="security_title_text">Security Question</style>

@@ -33,6 +33,6 @@ class HomeActivity : BaseActivity() ,KodeinAware{
         homeToolbar.tvToolbarTitle.text="Accounts"
         ivToolbarImage.visibility= View.VISIBLE
         ivToolbarRightImage.visibility=View.VISIBLE
-        showToast(viewModel.user?.email!!)
+//        showToast(viewModel.user?.email!!)
     }
 }
