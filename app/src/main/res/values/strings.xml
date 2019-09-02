@@ -31,7 +31,7 @@
     <string name="password_text">Password</string>
     <string name="log_in_text">Log In</string>
     <string name="pick_one">Pick One Question</string>
-    <string name="forgot_password_text">Forgot Password</string>
+    <string name="forgot_password_text">Forgot Password?</string>
     <string name="finger_print_info">Place Your Finger Print On Your Sensor</string>
     <string name="finger_auth">Finger Print Authentication</string>
 
@@ -67,4 +67,5 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="settings_text">Settings</string>
+    <string name="signupfromlogin"><small>Don\'t have an account.</small><big>Sign Up?</big></string>
 </resources>
