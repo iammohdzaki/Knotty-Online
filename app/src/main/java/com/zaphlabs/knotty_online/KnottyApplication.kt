@@ -3,16 +3,14 @@ package com.zaphlabs.knotty_online
 import android.app.Application
 import android.content.Context
 import com.zaphlabs.knotty_online.data.DataManager
+import com.zaphlabs.knotty_online.data.firebase.AccountSource
 import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
-import com.zaphlabs.knotty_online.data.remote.ApiRepository
 import com.zaphlabs.knotty_online.ui.auth.AuthViewModelFactory
-import com.zaphlabs.knotty_online.ui.home.HomeViewModel
 import com.zaphlabs.knotty_online.ui.home.HomeViewModelFactory
 import io.paperdb.Paper
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
-import org.kodein.di.bindings.Singleton
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider

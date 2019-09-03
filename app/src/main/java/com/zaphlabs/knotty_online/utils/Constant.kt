@@ -14,6 +14,10 @@ const val SPLASH_WAIT_TIME: Long = 3000
 const val ENCRYPTION_KEY="z1a2p3h4l5a6b7s8"
 const val REQUEST_DIRECTORY=100
 
+//FireSTore DB
+const val USER_COLLECTION="users"
+const val USER_DATA="user_data"
+
 interface STATUS_CODES{
     companion object{
         val SUCCESS=0
