@@ -47,3 +47,4 @@ inline fun <T> justTry(block: () -> T) = try {
     block()
 } catch (e: Throwable) {
 }
+

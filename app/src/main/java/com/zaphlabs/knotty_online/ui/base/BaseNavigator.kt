@@ -6,7 +6,7 @@ import com.zaphlabs.knotty_online.ui.customView.MaterialEditText
 interface BaseNavigator {
 
     fun hideKeyboard()
-    fun isNetworkConnected()
+    fun isNetworkConnected():Boolean
     fun onBackPress()
     fun showProgress()
     fun hideProgress()

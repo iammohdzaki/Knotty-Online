@@ -10,7 +10,7 @@ const val IS_FOR_UPDATE = "UPDATE"
 const val SAVE = "save"
 const val UPDATE = "update"
 const val ACCOUNT_ID = "ACCOUNT_ID"
-const val SPLASH_WAIT_TIME: Long = 10000
+const val SPLASH_WAIT_TIME: Long = 3000
 const val ENCRYPTION_KEY="z1a2p3h4l5a6b7s8"
 const val REQUEST_DIRECTORY=100
 

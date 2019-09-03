@@ -37,6 +37,7 @@ class SignUpActivity : BaseActivity() ,AuthListener,KodeinAware{
         hideProgress()
         showSnackbar("Success", SUCCESS)
         startActivity(Intent(this@SignUpActivity,HomeActivity::class.java))
+        finish()
     }
 
     override fun onFailure(message: String) {
@@ -44,10 +45,4 @@ class SignUpActivity : BaseActivity() ,AuthListener,KodeinAware{
         showSnackbar(message,FAILED)
     }
 
-    override fun onStart() {
-        super.onStart()
-       /* viewModel.user.let{
-            startActivity(Intent(this@SignUpActivity, HomeActivity::class.java))
-        }*/
-    }
 }

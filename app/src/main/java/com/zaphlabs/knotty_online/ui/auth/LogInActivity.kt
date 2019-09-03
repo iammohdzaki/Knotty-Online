@@ -41,6 +41,11 @@ class LogInActivity : BaseActivity(),KodeinAware,AuthListener{
         showSnackbar(message, STATUS_CODES.FAILED)
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        if(viewModel.user != null){
+            startActivity(Intent(this@LogInActivity, HomeActivity::class.java))
+        }
+    }
 
 }

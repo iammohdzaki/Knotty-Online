@@ -37,8 +37,8 @@ abstract class BaseActivity : AppCompatActivity(),BaseNavigator {
     }
 
 
-    override fun isNetworkConnected() {
-        NetworkUtils.isNetworkConnected(this)
+    override fun isNetworkConnected() : Boolean{
+        return NetworkUtils.isNetworkConnected(this)
     }
 
     override fun onBackPress() {

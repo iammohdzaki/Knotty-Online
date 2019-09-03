@@ -11,8 +11,10 @@ import io.reactivex.schedulers.Schedulers
 
 class AuthViewModel(private val manager:DataManager) : BaseViewModel(){
 
+    var name: String? = null
     var email: String? = null
     var password: String? = null
+    var confirmPassword:String? = null
 
     var authListener: AuthListener? = null
 
