@@ -93,6 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/forgot_password_text"
+            android:onClick="@{(v) -> viewmodel.goToForgotPassword(v)}"
             android:textAppearance="@style/MontserratBold"
             android:textSize="@dimen/font_normal"
             android:layout_marginTop="@dimen/margin_padding_size_medium"

@@ -13,8 +13,11 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.zaphlabs.knotty_online.R;
 import com.zaphlabs.knotty_online.utils.extensions.SafeString;
+
+import org.json.JSONObject;
 
 public class AlertDialog {
 
@@ -65,6 +68,8 @@ public class AlertDialog {
      */
     private Bundle backpack;
 
+    private String animName;
+
     /**
      * Method to create and display the alert alertDialog
      *
@@ -76,6 +81,8 @@ public class AlertDialog {
 
             alertDialog = new Dialog(activity, android.R.style.Theme_Translucent_NoTitleBar);
             alertDialog.setContentView(R.layout.dialog_alert);
+
+
 
             Window dialogWindow = alertDialog.getWindow();
             WindowManager.LayoutParams layoutParams = dialogWindow.getAttributes();
@@ -89,6 +96,8 @@ public class AlertDialog {
             TextView tvMessage = alertDialog.findViewById(R.id.tvMessage);
             tvMessage.setMovementMethod(ScrollingMovementMethod.getInstance());
             Button btnAction = alertDialog.findViewById(R.id.btnPositive);
+            LottieAnimationView loading=alertDialog.findViewById(R.id.loading);
+            loading.setAnimation(animName);
 
             tvMessage.setText(Html.fromHtml(message));
 
@@ -260,6 +269,11 @@ public class AlertDialog {
          */
         public Builder title(int resourceId) {
             return title(alertDialog.activity.getString(resourceId));
+        }
+
+        public Builder animName(String animName){
+            alertDialog.animName=animName;
+            return this;
         }
 
         /**

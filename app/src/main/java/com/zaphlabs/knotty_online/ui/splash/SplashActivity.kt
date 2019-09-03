@@ -25,6 +25,7 @@ class SplashActivity : BaseActivity() {
             AlertDialog.Builder(this@SplashActivity)
                 .message(getString(R.string.no_internet_try_again))
                 .button("Retry")
+                .animName("noconnection.json")
                 .listener { _, _ -> init() }
                 .build().show()
             return

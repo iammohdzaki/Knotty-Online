@@ -53,7 +53,7 @@ class AuthViewModel(private val manager: DataManager) : BaseViewModel() {
             return
         }
 
-        if(!password.equals(confirmPassword)){
+        if (!password.equals(confirmPassword)) {
             authListener?.onFailure("Password do not match!")
             return
         }
@@ -85,6 +85,20 @@ class AuthViewModel(private val manager: DataManager) : BaseViewModel() {
         disposables.add(disposable)
     }
 
+    fun resetPassword() {
+        if (email.isNullOrEmpty()) {
+            authListener?.onFailure("Please enter email!")
+            return
+        }
+
+        authListener?.onStarted()
+        val disposable = manager.forgotPassword(email!!)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ authListener?.onSuccess() }, { authListener?.onFailure(it.message!!) })
+        disposables.add(disposable)
+    }
+
     fun goToSignUp(view: View) {
         Intent(view.context, SignUpActivity::class.java).also {
             view.context.startActivity(it)
@@ -99,6 +113,12 @@ class AuthViewModel(private val manager: DataManager) : BaseViewModel() {
 
     fun goToHome(view: View) {
         Intent(view.context, HomeActivity::class.java).also {
+            view.context.startActivity(it)
+        }
+    }
+
+    fun goToForgotPassword(view: View){
+        Intent(view.context, ForgotPasswordActivity::class.java).also {
             view.context.startActivity(it)
         }
     }
