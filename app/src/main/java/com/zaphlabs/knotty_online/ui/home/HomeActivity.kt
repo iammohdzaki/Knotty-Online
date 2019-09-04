@@ -138,6 +138,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
             }
         }
 
+
     }
 
 
