@@ -68,6 +68,9 @@ public class AlertDialog {
      */
     private Bundle backpack;
 
+    /**
+     * Animation Name
+     */
     private String animName;
 
     /**
@@ -271,6 +274,11 @@ public class AlertDialog {
             return title(alertDialog.activity.getString(resourceId));
         }
 
+        /**
+         * Pass Animation Name to Play
+         * @param animName
+         * @return
+         */
         public Builder animName(String animName){
             alertDialog.animName=animName;
             return this;

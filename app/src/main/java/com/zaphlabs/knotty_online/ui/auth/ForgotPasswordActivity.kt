@@ -42,7 +42,7 @@ class ForgotPasswordActivity : BaseActivity(),AuthListener,KodeinAware {
         showSnackbar(message,FAILED)
     }
 
-    fun showDialog(){
+    private fun showDialog(){
         AlertDialog.Builder(this@ForgotPasswordActivity)
             .message("A email has been sent to your email!")
             .button("Ok")
