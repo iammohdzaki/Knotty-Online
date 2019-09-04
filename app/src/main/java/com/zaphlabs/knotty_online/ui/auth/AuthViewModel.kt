@@ -71,7 +71,7 @@ class AuthViewModel(private val manager: DataManager) : BaseViewModel() {
     }
 
     fun saveUserData() {
-        var user = User(name, email, password!!.encrypt(ENCRYPTION_KEY))
+        var user = User(name, email)
 
         authListener?.onStarted()
         val disposable = manager.saveUserData(user)
