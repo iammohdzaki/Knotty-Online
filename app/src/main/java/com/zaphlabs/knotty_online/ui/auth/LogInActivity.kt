@@ -34,6 +34,7 @@ class LogInActivity : BaseActivity(),KodeinAware,AuthListener{
     override fun onSuccess() {
         hideProgress()
         startActivity(Intent(this@LogInActivity, HomeActivity::class.java))
+        finish()
     }
 
     override fun onFailure(message: String) {
@@ -47,6 +48,7 @@ class LogInActivity : BaseActivity(),KodeinAware,AuthListener{
         super.onStart()
         if(viewModel.user != null){
             startActivity(Intent(this@LogInActivity, HomeActivity::class.java))
+            finish()
         }
     }
 

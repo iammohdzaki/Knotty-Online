@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -31,6 +32,10 @@ abstract class BaseActivity : AppCompatActivity(),BaseNavigator {
         customAlertDialogBuilder = CustomAlertDialog.Builder(this)
     }
 
+    override fun setOnClickListeners(onClickListener: View.OnClickListener, vararg views: View) {
+        for (view in views)
+            view.setOnClickListener(onClickListener)
+    }
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
