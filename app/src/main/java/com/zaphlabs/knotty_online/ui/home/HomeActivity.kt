@@ -96,10 +96,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
                     .positiveButton("Yes")
                     .negativeButton("No")
                     .listener(object : OptionsDialog.Listener {
-                        override fun performNegativeAction(purpose: Int, backpack: Bundle?) {
-
-                        }
-
+                        override fun performNegativeAction(purpose: Int, backpack: Bundle?) {}
                         override fun performPositiveAction(purpose: Int, backpack: Bundle?) {
                             viewModel.logOutUser()
                             startActivity(Intent(this@HomeActivity, LogInActivity::class.java))

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1004587281039-i12m834vl7s579hdnaim0td3t77756et.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zaphlabs.knotty_online",
+            "certificate_hash": "26a05c3808e831a610241b72d1588fdfdd833c79"
+          }
+        },
+        {
           "client_id": "1004587281039-rh7n0d21trpbt527f85carp8nf9pi6a2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
