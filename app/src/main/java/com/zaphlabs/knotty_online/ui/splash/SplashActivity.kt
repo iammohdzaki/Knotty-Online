@@ -4,12 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import com.zaphlabs.knotty_online.R
-import com.zaphlabs.knotty_online.ui.auth.LogInActivity
-import com.zaphlabs.knotty_online.ui.auth.SignUpActivity
+import com.zaphlabs.knotty_online.ui.onBoarding.LogInActivity
 import com.zaphlabs.knotty_online.ui.base.BaseActivity
 import com.zaphlabs.knotty_online.ui.customView.AlertDialog
-import com.zaphlabs.knotty_online.ui.customView.CustomAlertDialog
-import com.zaphlabs.knotty_online.ui.customView.OptionsDialog
 import com.zaphlabs.knotty_online.utils.SPLASH_WAIT_TIME
 
 class SplashActivity : BaseActivity() {

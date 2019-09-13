@@ -3,6 +3,7 @@ package com.zaphlabs.knotty_online.data
 import com.google.firebase.firestore.CollectionReference
 import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
 import com.zaphlabs.knotty_online.data.model.User
+import com.zaphlabs.knotty_online.data.model.UserAccount
 
 class DataManager(private val firebase: FirebaseSource){
 
@@ -23,5 +24,7 @@ class DataManager(private val firebase: FirebaseSource){
     fun deleteUserData() = firebase.deleteUserData()
 
     fun updateUserData(user: User) = firebase.updateUserData(user)
+
+    fun addUserAccount(userAccount: UserAccount) = firebase.addAccount(userAccount)
 
 }

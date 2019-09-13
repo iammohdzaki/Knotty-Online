@@ -5,7 +5,7 @@
 
         <variable
                 name="viewmodel"
-                type="com.zaphlabs.knotty_online.ui.auth.AuthViewModel" />
+                type="com.zaphlabs.knotty_online.ui.onBoarding.AuthViewModel" />
     </data>
 
     <ScrollView

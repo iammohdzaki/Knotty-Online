@@ -2,10 +2,14 @@ package com.zaphlabs.knotty_online.data.firebase
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zaphlabs.knotty_online.data.model.User
+import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.utils.USER_COLLECTION
 import io.reactivex.Completable
+import java.util.*
+import kotlin.collections.HashMap
 
 class FirebaseSource {
 
@@ -121,6 +125,25 @@ class FirebaseSource {
         var documentReference =
             firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid)
         documentReference.set(userData).addOnCompleteListener {
+            if (!emitter.isDisposed) {
+                if (it.isSuccessful)
+                    emitter.onComplete()
+                else
+                    emitter.onError(it.exception!!)
+            }
+        }
+    }
+
+    /**
+     * Add User Account
+     */
+    fun addAccount(userAccount: UserAccount)=Completable.create { emitter ->
+
+        var accountMap=HashMap<String, Any>()
+        accountMap.put("accounts",userAccount)
+
+        var documentReference=firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid)
+        documentReference.set(accountMap).addOnCompleteListener {
             if (!emitter.isDisposed) {
                 if (it.isSuccessful)
                     emitter.onComplete()

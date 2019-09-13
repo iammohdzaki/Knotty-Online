@@ -1,4 +1,4 @@
-package com.zaphlabs.knotty_online.ui.auth
+package com.zaphlabs.knotty_online.ui.onBoarding
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil

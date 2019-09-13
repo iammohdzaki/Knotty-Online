@@ -1,4 +1,4 @@
-package com.zaphlabs.knotty_online.ui.auth
+package com.zaphlabs.knotty_online.ui.onBoarding
 
 import android.content.Intent
 import android.view.View
@@ -6,8 +6,6 @@ import com.zaphlabs.knotty_online.data.DataManager
 import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.ui.base.BaseViewModel
 import com.zaphlabs.knotty_online.ui.home.HomeActivity
-import com.zaphlabs.knotty_online.utils.ENCRYPTION_KEY
-import com.zaphlabs.knotty_online.utils.encrypt
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

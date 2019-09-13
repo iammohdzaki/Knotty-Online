@@ -11,9 +11,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.zaphlabs.knotty_online.R
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
 import com.zaphlabs.knotty_online.databinding.ActivityHomeBinding
-import com.zaphlabs.knotty_online.ui.auth.LogInActivity
+import com.zaphlabs.knotty_online.ui.onBoarding.LogInActivity
 import com.zaphlabs.knotty_online.ui.base.BaseActivity
 import com.zaphlabs.knotty_online.ui.customView.OptionsDialog
+import com.zaphlabs.knotty_online.ui.editor.EditorActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_side_menu.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -44,7 +45,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
         homeToolbar.tvToolbarTitle.text = "Accounts"
         ivToolbarImage.visibility = View.VISIBLE
         ivToolbarRightImage.visibility = View.VISIBLE
-        setOnClickListeners(this@HomeActivity, ivToolbarImage, ivToolbarRightImage)
+        setOnClickListeners(this@HomeActivity, ivToolbarImage, ivToolbarRightImage,addAccount)
     }
 
     private fun setNavigationDrawer() {
@@ -71,6 +72,9 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
 
     override fun onClick(v: View?) {
         when (v!!.id) {
+            R.id.addAccount -> {
+                startActivity(Intent(this@HomeActivity,EditorActivity::class.java))
+            }
             R.id.ivToolbarImage -> {
                 //Navigation
                 navDrawer.openDrawer(Gravity.LEFT)

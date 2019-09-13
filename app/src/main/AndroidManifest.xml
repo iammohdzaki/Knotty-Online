@@ -10,10 +10,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ui.auth.ForgotPasswordActivity"></activity>
+        <activity android:name=".ui.editor.EditorActivity"></activity>
+        <activity android:name=".ui.onBoarding.ForgotPasswordActivity" />
         <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.auth.SignUpActivity" />
-        <activity android:name=".ui.auth.LogInActivity" />
+        <activity android:name=".ui.onBoarding.SignUpActivity" />
+        <activity android:name=".ui.onBoarding.LogInActivity" />
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
