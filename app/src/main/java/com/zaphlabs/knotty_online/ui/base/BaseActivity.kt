@@ -3,6 +3,8 @@ package com.zaphlabs.knotty_online.ui.base
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,7 @@ import com.zaphlabs.knotty_online.R
 import com.zaphlabs.knotty_online.ui.customView.CustomAlertDialog
 import com.zaphlabs.knotty_online.ui.customView.MaterialEditText
 import com.zaphlabs.knotty_online.ui.customView.ProgressDialog
+import com.zaphlabs.knotty_online.utils.NetworkChangeBroadcastReceiver
 import com.zaphlabs.knotty_online.utils.NetworkUtils
 import com.zaphlabs.knotty_online.utils.STATUS_CODES.Companion.FAILED
 import com.zaphlabs.knotty_online.utils.STATUS_CODES.Companion.SUCCESS
@@ -25,9 +28,12 @@ abstract class BaseActivity : AppCompatActivity(),BaseNavigator {
     private var alertDialogBuilder: AlertDialog.Builder? = null
     private var customAlertDialogBuilder: CustomAlertDialog.Builder? = null
     private var dialog: Dialog? = null
+    private var mNetworkChangeReceiver = NetworkChangeBroadcastReceiver()
+    private var noNetworkDialog:com.zaphlabs.knotty_online.ui.customView.AlertDialog?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        registerNetworkChangeBroadcastReceiver()
         alertDialogBuilder = AlertDialog.Builder(this)
         customAlertDialogBuilder = CustomAlertDialog.Builder(this)
     }
@@ -121,4 +127,32 @@ abstract class BaseActivity : AppCompatActivity(),BaseNavigator {
             .setNegativeButton(negativeTextId, null)
             .show()
     }
+
+    private fun registerNetworkChangeBroadcastReceiver() {
+        mNetworkChangeReceiver.setOnNetworkChangeListener(object : NetworkChangeBroadcastReceiver.OnNetworkChangeListener {
+
+            override fun onConnectionAvailable() {
+                if(noNetworkDialog!= null){
+                    noNetworkDialog!!.dismiss()
+                }
+            }
+
+            override fun onConnectionNotAvailable() {
+                noNetworkDialog=com.zaphlabs.knotty_online.ui.customView.AlertDialog.Builder(this@BaseActivity)
+                    .message(getString(R.string.no_internet_try_again))
+                    .button("Connect to Internet")
+                    .animName("noconnection.json")
+                    .build()
+                noNetworkDialog!!.show()
+            }
+        })
+        registerReceiver(mNetworkChangeReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(mNetworkChangeReceiver)
+        super.onDestroy()
+    }
+
+
 }

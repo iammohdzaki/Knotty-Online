@@ -61,6 +61,8 @@ public class AlertDialog {
      */
     private String actionButton;
 
+    private boolean isClickable;
+
     /**
      * The data to sent via the Dialog from the
      * remote parts of the Activity to other
@@ -111,8 +113,9 @@ public class AlertDialog {
                 @Override
                 public void onClick(View v) {
 
-                    alertDialog.dismiss();
-
+                    if(isClickable){
+                        alertDialog.dismiss();
+                    }
                     if (listener != null)
                         listener.performPostAlertAction(purpose, backpack);
                 }
@@ -281,6 +284,11 @@ public class AlertDialog {
          */
         public Builder animName(String animName){
             alertDialog.animName=animName;
+            return this;
+        }
+
+        public Builder buttonClickable(Boolean isClickable){
+            alertDialog.isClickable=isClickable;
             return this;
         }
 
