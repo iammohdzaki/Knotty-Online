@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.data.model.UserAccount
+import com.zaphlabs.knotty_online.utils.USER_ACCOUNT
 import com.zaphlabs.knotty_online.utils.USER_COLLECTION
 import io.reactivex.Completable
 import java.util.*
@@ -83,8 +84,8 @@ class FirebaseSource {
      * @param userData as User Data Model
      */
     fun saveUserData(userData: User) = Completable.create { emitter ->
-        var documentReference = firestoreDb.collection(USER_COLLECTION)
-        documentReference.add(userData).addOnCompleteListener {
+        var documentReference = firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid)
+        documentReference.set(userData).addOnCompleteListener {
             if (!emitter.isDisposed) {
                 if (it.isSuccessful)
                     emitter.onComplete()
@@ -138,12 +139,8 @@ class FirebaseSource {
      * Add User Account
      */
     fun addAccount(userAccount: UserAccount)=Completable.create { emitter ->
-
-        var accountMap=HashMap<String, Any>()
-        accountMap.put("accounts",userAccount)
-
-        var documentReference=firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid)
-        documentReference.set(accountMap).addOnCompleteListener {
+        var documentReference=firestoreDb.collection(USER_ACCOUNT)
+        documentReference.add(userAccount).addOnCompleteListener {
             if (!emitter.isDisposed) {
                 if (it.isSuccessful)
                     emitter.onComplete()

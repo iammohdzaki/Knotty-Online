@@ -16,6 +16,7 @@ const val REQUEST_DIRECTORY=100
 
 //FireSTore DB
 const val USER_COLLECTION="users"
+const val USER_ACCOUNT="accounts"
 const val USER_DATA="user_data"
 
 interface STATUS_CODES{
