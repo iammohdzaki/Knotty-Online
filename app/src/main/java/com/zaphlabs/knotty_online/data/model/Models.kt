@@ -3,12 +3,11 @@ package com.zaphlabs.knotty_online.data.model
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class User(
     var name: String? = null,
     var email: String? = null,
-    var accounts: List<UserAccount>? = null
-) : Parcelable
+    var accounts: Map<String,Any> ?= null
+)
 
 @Parcelize
 data class UserAccount(

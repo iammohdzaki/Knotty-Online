@@ -4,10 +4,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.data.model.UserAccount
-import com.zaphlabs.knotty_online.utils.USER_ACCOUNT
-import com.zaphlabs.knotty_online.utils.USER_COLLECTION
+import com.zaphlabs.knotty_online.utils.*
 import io.reactivex.Completable
 import java.util.*
 import kotlin.collections.HashMap
@@ -139,8 +139,28 @@ class FirebaseSource {
      * Add User Account
      */
     fun addAccount(userAccount: UserAccount)=Completable.create { emitter ->
-        var documentReference=firestoreDb.collection(USER_ACCOUNT)
-        documentReference.add(userAccount).addOnCompleteListener {
+
+        var count=2434
+        val accountData= hashMapOf(
+            ACCOUNT_ID to userAccount.accountId,
+            ACCOUNT_TITLE to userAccount.accountTitle,
+            ACCOUNT_USER_NAME to userAccount.accountUserName,
+            ACCOUNT_EMAIL to userAccount.accountEmail,
+            ACCOUNT_PASSWORD to userAccount.accountPassword,
+            ACCOUNT_NOTE to userAccount.accountNote,
+            ACCOUNT_COLOR to userAccount.imageColor,
+            ACCOUNT_STARRED to userAccount.accountStarred,
+            ACCOUNT_TIME_STAMP to userAccount.accountTimeStamp
+        )
+
+        val accountDocs= hashMapOf(
+            "accounts" to hashMapOf(
+                count.toString() to accountData
+            )
+        )
+
+        val documentReference=firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid)
+        documentReference.set(accountDocs as Map<String, Any>, SetOptions.merge()).addOnCompleteListener {
             if (!emitter.isDisposed) {
                 if (it.isSuccessful)
                     emitter.onComplete()
