@@ -1,5 +1,6 @@
 package com.zaphlabs.knotty_online.ui.editor
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -49,4 +50,19 @@ class EditorActivity : BaseActivity() ,CallbackListener, KodeinAware {
         showSnackbar(message,FAILED)
     }
 
+    /**
+     * chooses a random color from array.xml
+     */
+    fun getRandomMaterialColor(typeColor: String): Int {
+        var returnColor = Color.GRAY
+        val arrayId = resources.getIdentifier("mdcolor_$typeColor", "array", packageName)
+
+        if (arrayId != 0) {
+            val colors = resources.obtainTypedArray(arrayId)
+            val index = (Math.random() * colors.length()).toInt()
+            returnColor = colors.getColor(index, Color.GRAY)
+            colors.recycle()
+        }
+        return returnColor
+    }
 }

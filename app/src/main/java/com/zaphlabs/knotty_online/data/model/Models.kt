@@ -12,9 +12,9 @@ data class User(
 @Parcelize
 data class UserAccount(
     var accountId: Int,
-    var accountTitle: String,
+    var accountTitle: String ?= null,
     var accountUserName: String? = null,
-    var accountPassword: String,
+    var accountPassword: String? = null,
     var accountEmail: String? = null,
     var accountTimeStamp: String,
     var accountNote: String? = null,

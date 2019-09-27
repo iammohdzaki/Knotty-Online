@@ -140,9 +140,9 @@ class FirebaseSource {
      */
     fun addAccount(userAccount: UserAccount)=Completable.create { emitter ->
 
-        var count=2434
+        val id=firestoreDb.collection(USER_COLLECTION).document().id
         val accountData= hashMapOf(
-            ACCOUNT_ID to userAccount.accountId,
+            ACCOUNT_ID to id,
             ACCOUNT_TITLE to userAccount.accountTitle,
             ACCOUNT_USER_NAME to userAccount.accountUserName,
             ACCOUNT_EMAIL to userAccount.accountEmail,
@@ -155,7 +155,7 @@ class FirebaseSource {
 
         val accountDocs= hashMapOf(
             "accounts" to hashMapOf(
-                count.toString() to accountData
+                id to accountData
             )
         )
 

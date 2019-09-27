@@ -1,9 +1,11 @@
 package com.zaphlabs.knotty_online.ui.editor
 
+import android.view.View
 import com.zaphlabs.knotty_online.data.DataManager
 import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
 import com.zaphlabs.knotty_online.ui.base.BaseViewModel
+import com.zaphlabs.knotty_online.utils.DateTimeUtil
 import com.zaphlabs.knotty_online.utils.ENCRYPTION_KEY
 import com.zaphlabs.knotty_online.utils.encrypt
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,9 +23,9 @@ class EditorViewModel(private val manager: DataManager) : BaseViewModel() {
     //disposable to dispose the Completable
     private val disposables = CompositeDisposable()
 
-    fun addAccount(){
-        var user= UserAccount(0,"Google","Zaki","zaki123".encrypt(ENCRYPTION_KEY),"zaki@gmail.com",
-            "10/19","Testing",1,-1)
+    fun addAccount(view: View){
+        var user= UserAccount(0,accountTitle,accountUserName,accountPassword?.encrypt(ENCRYPTION_KEY),accountEmail,
+            DateTimeUtil.getCurrentDate().toString(),accountNote,0,-1)
 
         callbackListener?.onStarted()
         val disposable=manager.addUserAccount(user)
