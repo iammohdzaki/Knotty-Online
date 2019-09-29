@@ -11,13 +11,12 @@ data class User(
 
 @Parcelize
 data class UserAccount(
-    var accountId: Int,
+    var accountId: String,
     var accountTitle: String ?= null,
     var accountUserName: String? = null,
     var accountPassword: String? = null,
     var accountEmail: String? = null,
     var accountTimeStamp: String,
     var accountNote: String? = null,
-    var accountStarred: Int,
-    var imageColor: Int = -1
+    var accountStarred: Int
 ) : Parcelable

@@ -1,10 +1,7 @@
 package com.zaphlabs.knotty_online.data.firebase
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.*
 import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.utils.*
@@ -99,8 +96,8 @@ class FirebaseSource {
      * Get User Data
      * @return collection reference
      */
-    fun getUserData(): CollectionReference {
-        return firestoreDb.collection(USER_COLLECTION)
+    fun getUserData(): DocumentReference {
+        return firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid)
     }
 
     /**
@@ -148,7 +145,6 @@ class FirebaseSource {
             ACCOUNT_EMAIL to userAccount.accountEmail,
             ACCOUNT_PASSWORD to userAccount.accountPassword,
             ACCOUNT_NOTE to userAccount.accountNote,
-            ACCOUNT_COLOR to userAccount.imageColor,
             ACCOUNT_STARRED to userAccount.accountStarred,
             ACCOUNT_TIME_STAMP to userAccount.accountTimeStamp
         )

@@ -45,6 +45,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
         homeToolbar.tvToolbarTitle.text = "Accounts"
         ivToolbarImage.visibility = View.VISIBLE
         ivToolbarRightImage.visibility = View.VISIBLE
+        viewModel.getAllAccounts()
         setOnClickListeners(this@HomeActivity, ivToolbarImage, ivToolbarRightImage,addAccount)
     }
 
