@@ -36,3 +36,7 @@ const val ACCOUNT_TIME_STAMP="accountTimeStamp"
 const val ACCOUNT_NOTE="accountNote"
 const val ACCOUNT_STARRED="accountStarred"
 const val ACCOUNT_COLOR="imageColor"
+
+//REQUEST CODES
+const val OPEN_EDITOR_SCREEN=101
+

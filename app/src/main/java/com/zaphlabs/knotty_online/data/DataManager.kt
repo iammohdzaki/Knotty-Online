@@ -1,6 +1,5 @@
 package com.zaphlabs.knotty_online.data
 
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
 import com.zaphlabs.knotty_online.data.model.User

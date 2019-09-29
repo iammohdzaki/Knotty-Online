@@ -1,5 +1,6 @@
 package com.zaphlabs.knotty_online.ui.home
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
@@ -9,12 +10,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.zaphlabs.knotty_online.R
+import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
+import com.zaphlabs.knotty_online.data.remote.ResponseCallback
 import com.zaphlabs.knotty_online.databinding.ActivityHomeBinding
 import com.zaphlabs.knotty_online.ui.onBoarding.LogInActivity
 import com.zaphlabs.knotty_online.ui.base.BaseActivity
 import com.zaphlabs.knotty_online.ui.customView.OptionsDialog
 import com.zaphlabs.knotty_online.ui.editor.EditorActivity
+import com.zaphlabs.knotty_online.utils.OPEN_EDITOR_SCREEN
+import com.zaphlabs.knotty_online.utils.STATUS_CODES
+import com.zaphlabs.knotty_online.utils.extensions.toast
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_side_menu.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -23,7 +29,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, CallbackListener {
+class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, CallbackListener,ResponseCallback {
 
     override val kodein by kodein()
     private val factory: HomeViewModelFactory by instance()
@@ -37,6 +43,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
         viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
         binding.viewModel = viewModel
         viewModel.callbackListener = this
+        viewModel.responseCallback = this
         init()
         setNavigationDrawer()
     }
@@ -74,7 +81,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.addAccount -> {
-                startActivity(Intent(this@HomeActivity,EditorActivity::class.java))
+                startActivityForResult(Intent(this@HomeActivity,EditorActivity::class.java),OPEN_EDITOR_SCREEN)
             }
             R.id.ivToolbarImage -> {
                 //Navigation
@@ -160,15 +167,34 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
     }
 
     override fun onStarted() {
+        showProgress()
     }
 
     override fun onSuccess() {
+        hideProgress()
     }
 
     override fun onComplete() {
     }
 
     override fun onFailure(message: String) {
+        hideProgress()
+        showSnackbar(message, STATUS_CODES.FAILED)
+    }
+
+    override fun onDataReceived(accountList: ArrayList<UserAccount>) {
+        toast("ACCOUNT LIST SIZE: ${accountList.size}")
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when(requestCode){
+            OPEN_EDITOR_SCREEN -> {
+                if(resultCode == Activity.RESULT_OK){
+                    viewModel.getAllAccounts()
+                }
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 }

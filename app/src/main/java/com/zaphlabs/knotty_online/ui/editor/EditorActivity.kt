@@ -1,5 +1,6 @@
 package com.zaphlabs.knotty_online.ui.editor
 
+import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -40,6 +41,7 @@ class EditorActivity : BaseActivity() ,CallbackListener, KodeinAware {
 
     override fun onSuccess() {
         hideProgress()
+        setResult(Activity.RESULT_OK)
         finish()
     }
 

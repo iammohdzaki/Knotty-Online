@@ -4,6 +4,7 @@ import android.util.Log
 import com.zaphlabs.knotty_online.data.DataManager
 import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
+import com.zaphlabs.knotty_online.data.remote.ResponseCallback
 import com.zaphlabs.knotty_online.ui.base.BaseViewModel
 import com.zaphlabs.knotty_online.utils.*
 
@@ -12,9 +13,11 @@ class HomeViewModel(private val dataManager: DataManager) : BaseViewModel() {
 
     val user by lazy { dataManager.currentUser() }
     var callbackListener: CallbackListener? = null
+    var responseCallback: ResponseCallback?= null
     var accountList= ArrayList<UserAccount>()
 
     fun getAllAccounts(){
+        callbackListener!!.onStarted()
         dataManager.getUserData().get().addOnSuccessListener {
             documentSnapshot ->
             if (documentSnapshot != null) {
@@ -37,8 +40,11 @@ class HomeViewModel(private val dataManager: DataManager) : BaseViewModel() {
             } else {
                 Log.d("DATA---", "No such document")
             }
+            responseCallback!!.onDataReceived(accountList)
+            callbackListener!!.onSuccess()
         }.addOnFailureListener { exception ->
                 Log.d("DATA---", "get failed with ", exception)
+                callbackListener!!.onFailure(exception.printStackTrace().toString())
             }
     }
 
