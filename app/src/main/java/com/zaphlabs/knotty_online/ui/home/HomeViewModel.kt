@@ -20,7 +20,7 @@ class HomeViewModel(private val dataManager: DataManager) : BaseViewModel() {
         callbackListener!!.onStarted()
         dataManager.getUserData().get().addOnSuccessListener {
             documentSnapshot ->
-            if (documentSnapshot != null) {
+            if (documentSnapshot.get("accounts") != null) {
                 var data: HashMap<String, Any> = documentSnapshot.get("accounts") as HashMap<String,Any>
                 for (i in data){
                     var accountData = data[i.key] as HashMap<String,Any>
