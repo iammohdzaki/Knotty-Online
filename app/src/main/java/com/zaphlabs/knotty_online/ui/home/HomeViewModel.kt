@@ -14,12 +14,13 @@ class HomeViewModel(private val dataManager: DataManager) : BaseViewModel() {
     val user by lazy { dataManager.currentUser() }
     var callbackListener: CallbackListener? = null
     var responseCallback: ResponseCallback?= null
-    var accountList= ArrayList<UserAccount>()
+    var accountList=ArrayList<UserAccount>()
 
     fun getAllAccounts(){
         callbackListener!!.onStarted()
+        accountList.clear()
         dataManager.getUserData().get().addOnSuccessListener {
-            documentSnapshot ->
+                documentSnapshot ->
             if (documentSnapshot.get("accounts") != null) {
                 var data: HashMap<String, Any> = documentSnapshot.get("accounts") as HashMap<String,Any>
                 for (i in data){
@@ -43,9 +44,9 @@ class HomeViewModel(private val dataManager: DataManager) : BaseViewModel() {
             responseCallback!!.onDataReceived(accountList)
             callbackListener!!.onSuccess()
         }.addOnFailureListener { exception ->
-                Log.d("DATA---", "get failed with ", exception)
-                callbackListener!!.onFailure(exception.printStackTrace().toString())
-            }
+            Log.d("DATA---", "get failed with ", exception)
+            callbackListener!!.onFailure(exception.printStackTrace().toString())
+        }
     }
 
     fun logOutUser(){

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.zaphlabs.knotty_online.R
 import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
@@ -18,6 +19,8 @@ import com.zaphlabs.knotty_online.ui.onBoarding.LogInActivity
 import com.zaphlabs.knotty_online.ui.base.BaseActivity
 import com.zaphlabs.knotty_online.ui.customView.OptionsDialog
 import com.zaphlabs.knotty_online.ui.editor.EditorActivity
+import com.zaphlabs.knotty_online.ui.home.adapter.AccountAdapter
+import com.zaphlabs.knotty_online.ui.home.adapter.RecyclerClickListener
 import com.zaphlabs.knotty_online.utils.OPEN_EDITOR_SCREEN
 import com.zaphlabs.knotty_online.utils.STATUS_CODES
 import com.zaphlabs.knotty_online.utils.extensions.toast
@@ -29,12 +32,15 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, CallbackListener,ResponseCallback {
+class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, CallbackListener,ResponseCallback,
+    RecyclerClickListener {
 
     override val kodein by kodein()
     private val factory: HomeViewModelFactory by instance()
     private lateinit var viewModel: HomeViewModel
     private var mDrawerToggle: ActionBarDrawerToggle? = null
+    private var accountAdapter: AccountAdapter? = null
+    private var accountList = ArrayList<UserAccount>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +59,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
         ivToolbarImage.visibility = View.VISIBLE
         ivToolbarRightImage.visibility = View.VISIBLE
         viewModel.getAllAccounts()
+        hideLayout()
         setOnClickListeners(this@HomeActivity, ivToolbarImage, ivToolbarRightImage,addAccount)
     }
 
@@ -77,6 +84,22 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
         navDrawer.addDrawerListener(mDrawerToggle as ActionBarDrawerToggle)
     }
 
+
+    private fun setUpRecyclerView() {
+        rvManageAccount.layoutManager = LinearLayoutManager(this)
+        accountAdapter = AccountAdapter(this, accountList,this)
+        rvManageAccount.adapter = accountAdapter
+    }
+
+    private fun hideLayout() {
+        if (accountList.size != 0) {
+            animation_view.visibility = View.GONE
+            emptyTextView.visibility = View.GONE
+        } else {
+            animation_view.visibility = View.VISIBLE
+            emptyTextView.visibility = View.VISIBLE
+        }
+    }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
@@ -183,7 +206,9 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
     }
 
     override fun onDataReceived(accountList: ArrayList<UserAccount>) {
-        toast("ACCOUNT LIST SIZE: ${accountList.size}")
+        this.accountList=accountList
+        setUpRecyclerView()
+        hideLayout()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -191,10 +216,17 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
             OPEN_EDITOR_SCREEN -> {
                 if(resultCode == Activity.RESULT_OK){
                     viewModel.getAllAccounts()
+                    hideLayout()
                 }
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onItemClick(position: Int) {
+    }
+
+    override fun onStarClick(position: Int) {
     }
 
 }

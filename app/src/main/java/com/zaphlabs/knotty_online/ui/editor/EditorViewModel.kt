@@ -4,8 +4,10 @@ import com.zaphlabs.knotty_online.data.DataManager
 import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
 import com.zaphlabs.knotty_online.ui.base.BaseViewModel
+import com.zaphlabs.knotty_online.utils.DateFormat.Companion.STANDARD_DATE_FORMAT
 import com.zaphlabs.knotty_online.utils.DateTimeUtil
 import com.zaphlabs.knotty_online.utils.ENCRYPTION_KEY
+import com.zaphlabs.knotty_online.utils.END_USER_DATE_FORMAT
 import com.zaphlabs.knotty_online.utils.encrypt
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -24,8 +26,14 @@ class EditorViewModel(private val manager: DataManager) : BaseViewModel() {
     private val disposables = CompositeDisposable()
 
     fun addAccount(){
-        var user= UserAccount("",accountTitle,accountUserName,accountPassword?.encrypt(ENCRYPTION_KEY),accountEmail,
-            DateTimeUtil.getCurrentDate().toString(),accountNote,0)
+        var user= UserAccount("",
+            accountTitle,
+            accountUserName,
+            accountPassword?.encrypt(ENCRYPTION_KEY),
+            accountEmail,
+            DateTimeUtil.getFormattedDate( DateTimeUtil.getCurrentDate(), STANDARD_DATE_FORMAT)
+            ,accountNote,
+            0)
 
         callbackListener?.onStarted()
         val disposable=manager.addUserAccount(user)
