@@ -2,6 +2,7 @@ package com.zaphlabs.knotty_online.ui.home
 
 import android.util.Log
 import com.zaphlabs.knotty_online.data.DataManager
+import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
 import com.zaphlabs.knotty_online.data.remote.ResponseCallback
@@ -41,12 +42,17 @@ class HomeViewModel(private val dataManager: DataManager) : BaseViewModel() {
             } else {
                 Log.d("DATA---", "No such document")
             }
-            responseCallback!!.onDataReceived(accountList)
+            var user=User(documentSnapshot.get("name").toString(),documentSnapshot.get("email").toString(),accountList)
+            responseCallback!!.onDataReceived(user)
             callbackListener!!.onSuccess()
         }.addOnFailureListener { exception ->
             Log.d("DATA---", "get failed with ", exception)
             callbackListener!!.onFailure(exception.printStackTrace().toString())
         }
+    }
+
+    fun getUserData(){
+
     }
 
     fun logOutUser(){

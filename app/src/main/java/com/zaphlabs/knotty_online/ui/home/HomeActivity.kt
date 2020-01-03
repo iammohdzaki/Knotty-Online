@@ -2,15 +2,16 @@ package com.zaphlabs.knotty_online.ui.home
 
 import android.app.Activity
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zaphlabs.knotty_online.R
+import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
 import com.zaphlabs.knotty_online.data.remote.ResponseCallback
@@ -23,7 +24,6 @@ import com.zaphlabs.knotty_online.ui.home.adapter.AccountAdapter
 import com.zaphlabs.knotty_online.ui.home.adapter.RecyclerClickListener
 import com.zaphlabs.knotty_online.utils.OPEN_EDITOR_SCREEN
 import com.zaphlabs.knotty_online.utils.STATUS_CODES
-import com.zaphlabs.knotty_online.utils.extensions.toast
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_side_menu.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -32,7 +32,8 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, CallbackListener,ResponseCallback,
+class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, CallbackListener,
+    ResponseCallback,
     RecyclerClickListener {
 
     override val kodein by kodein()
@@ -58,20 +59,18 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
         homeToolbar.tvToolbarTitle.text = "Accounts"
         ivToolbarImage.visibility = View.VISIBLE
         ivToolbarRightImage.visibility = View.VISIBLE
+        shimmer_view_container.visibility = View.VISIBLE
         viewModel.getAllAccounts()
-        hideLayout()
-        setOnClickListeners(this@HomeActivity, ivToolbarImage, ivToolbarRightImage,addAccount)
+        setOnClickListeners(this@HomeActivity, ivToolbarImage, ivToolbarRightImage, addAccount)
     }
 
     private fun setNavigationDrawer() {
         mDrawerToggle =
             object : ActionBarDrawerToggle(this, navDrawer, R.string.app_name, R.string.app_name) {
                 override fun onDrawerClosed(view: View) {
-                    supportInvalidateOptionsMenu()
                 }
 
                 override fun onDrawerOpened(drawerView: View) {
-                    supportInvalidateOptionsMenu()
                 }
 
                 override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
@@ -87,24 +86,17 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
 
     private fun setUpRecyclerView() {
         rvManageAccount.layoutManager = LinearLayoutManager(this)
-        accountAdapter = AccountAdapter(this, accountList,this)
+        accountAdapter = AccountAdapter(this, accountList, this)
         rvManageAccount.adapter = accountAdapter
-    }
-
-    private fun hideLayout() {
-        if (accountList.size != 0) {
-            animation_view.visibility = View.GONE
-            emptyTextView.visibility = View.GONE
-        } else {
-            animation_view.visibility = View.VISIBLE
-            emptyTextView.visibility = View.VISIBLE
-        }
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.addAccount -> {
-                startActivityForResult(Intent(this@HomeActivity,EditorActivity::class.java),OPEN_EDITOR_SCREEN)
+                startActivityForResult(
+                    Intent(this@HomeActivity, EditorActivity::class.java),
+                    OPEN_EDITOR_SCREEN
+                )
             }
             R.id.ivToolbarImage -> {
                 //Navigation
@@ -113,19 +105,8 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
             R.id.ivToolbarRightImage -> {
             }
             R.id.tvFavorites -> {
-                sliderTabsSelector(R.id.tvFavorites)
-            }
-            R.id.tvContactUs -> {
-                sliderTabsSelector(R.id.tvContactUs)
-            }
-            R.id.tvRate -> {
-                sliderTabsSelector(R.id.tvRate)
-            }
-            R.id.tvFeedback -> {
-                sliderTabsSelector(R.id.tvFeedback)
             }
             R.id.tvLogOut -> {
-                sliderTabsSelector(R.id.tvLogOut)
                 OptionsDialog.Builder(this@HomeActivity)
                     .message("Are you sure you want to logout ?")
                     .positiveButton("Yes")
@@ -142,81 +123,47 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
         }
     }
 
-    private fun sliderTabsSelector(id: Int) {
-        tvFavorites.isSelected = false
-        tvContactUs.isSelected = false
-        tvRate.isSelected = false
-        tvLogOut.isSelected = false
-        tvFeedback.isSelected = false
-
-        when (id) {
-            R.id.tvFavorites -> {
-                handleNavigationBackground(tvFavorites, tvContactUs, tvRate, tvLogOut, tvFeedback)
-            }
-
-            R.id.tvContactUs -> {
-                handleNavigationBackground(tvContactUs, tvFavorites, tvRate, tvLogOut, tvFeedback)
-            }
-
-            R.id.tvRate -> {
-                handleNavigationBackground(tvRate, tvFavorites, tvContactUs, tvLogOut, tvFeedback)
-            }
-
-            R.id.tvLogOut -> {
-                handleNavigationBackground(tvLogOut, tvFeedback, tvFavorites, tvContactUs, tvRate)
-            }
-            R.id.tvFeedback -> {
-                handleNavigationBackground(tvFeedback, tvLogOut, tvRate, tvContactUs, tvFavorites)
-            }
-        }
-
-
-    }
-
-
-    private fun handleNavigationBackground(mainView: View, vararg otherViews: View) {
-        mainView.isSelected = true
-        (mainView as TextView).setTextColor(resources.getColor(R.color.colorAccent))
-        (mainView as TextView).compoundDrawables[0].setTint(resources.getColor(R.color.colorAccent))
-        mainView.setBackgroundResource(R.drawable.selector_navigation_click)
-
-        for (i in otherViews) {
-            (i as TextView).setTextColor(resources.getColor(R.color.black))
-            (i as TextView).compoundDrawables[0].setTint(resources.getColor(R.color.gray))
-            i.background = null
-            i.isSelected = false
-        }
-
-    }
-
     override fun onStarted() {
-        showProgress()
+        shimmer_view_container.startShimmerAnimation()
+        slSidePlaceholder.startShimmerAnimation()
     }
 
     override fun onSuccess() {
-        hideProgress()
+        shimmer_view_container.stopShimmerAnimation()
+        slSidePlaceholder.stopShimmerAnimation()
     }
 
     override fun onComplete() {
     }
 
     override fun onFailure(message: String) {
-        hideProgress()
+        shimmer_view_container.stopShimmerAnimation()
+        slSidePlaceholder.stopShimmerAnimation()
         showSnackbar(message, STATUS_CODES.FAILED)
     }
 
-    override fun onDataReceived(accountList: ArrayList<UserAccount>) {
-        this.accountList=accountList
+    override fun onDataReceived(userData: User) {
+        shimmer_view_container.visibility = View.GONE
+        if (userData.accounts!!.size > 0) {
+            rvManageAccount.visibility = View.VISIBLE
+            noAccounts.visibility = View.GONE
+        } else {
+            rvManageAccount.visibility = View.GONE
+            noAccounts.visibility = View.VISIBLE
+        }
+        this.accountList = userData.accounts!!
+        groupUserData.visibility=View.VISIBLE
+        slSidePlaceholder.visibility=View.GONE
+        tvUserName.text=userData.name
+        tvUserEmail.text=userData.email
         setUpRecyclerView()
-        hideLayout()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when(requestCode){
+        when (requestCode) {
             OPEN_EDITOR_SCREEN -> {
-                if(resultCode == Activity.RESULT_OK){
+                if (resultCode == Activity.RESULT_OK) {
                     viewModel.getAllAccounts()
-                    hideLayout()
                 }
             }
         }

@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#FFF</color>
     <color name="colorAccent">#f56258</color>
 
+    <color name="background">#dddddd</color>
+
     <color name="popup_bg_color">#ffffff</color>
     <color name="popup_heading_color">#99474747</color>
     <color name="popup_message_color">#474747</color>

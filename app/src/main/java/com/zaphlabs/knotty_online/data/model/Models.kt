@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 data class User(
     var name: String? = null,
     var email: String? = null,
-    var accounts: Map<String,Any> ?= null
+    var accounts: ArrayList<UserAccount> ?= null
 )
 
 @Parcelize

@@ -2,10 +2,10 @@
 <layout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        xmlns:shimmer="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
         <variable
                 name="viewModel"
                 type="com.zaphlabs.knotty_online.ui.home.HomeViewModel" />
@@ -15,8 +15,7 @@
             android:id="@+id/navDrawer"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            tools:openDrawer="start">
+            android:orientation="vertical">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/coordinator"
@@ -27,7 +26,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
 
                 <include
                         android:id="@+id/homeToolbar"
@@ -43,11 +41,45 @@
                         style="@style/GuideLineVertical"
                         app:layout_constraintGuide_percent="1.0" />
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_view_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:layout_constraintTop_toBottomOf="@id/homeToolbar"
+                        android:orientation="vertical"
+                        shimmer:duration="800">
+
+                    <!-- Adding 7 rows of placeholders -->
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                        <include layout="@layout/data_placeholder_layout" />
+                        <include layout="@layout/data_placeholder_layout" />
+                        <include layout="@layout/data_placeholder_layout" />
+                        <include layout="@layout/data_placeholder_layout" />
+                        <include layout="@layout/data_placeholder_layout" />
+                        <include layout="@layout/data_placeholder_layout" />
+                        <include layout="@layout/data_placeholder_layout" />
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.constraintlayout.widget.Group
+                        android:id="@+id/noAccounts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:constraint_referenced_ids="animation_view,emptyTextView"
+                        />
+
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvManageAccount"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:paddingBottom="@dimen/margin_padding_size_medium"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@id/glEnd"
                         app:layout_constraintHeight_max="wrap"
