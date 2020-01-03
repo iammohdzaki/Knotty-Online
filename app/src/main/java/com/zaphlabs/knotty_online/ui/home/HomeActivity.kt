@@ -10,7 +10,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.zaphlabs.knotty_online.R
 import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
@@ -31,6 +30,9 @@ import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import android.app.Dialog
+import com.zaphlabs.knotty_online.R
+
 
 class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, CallbackListener,
     ResponseCallback,
@@ -42,6 +44,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
     private var mDrawerToggle: ActionBarDrawerToggle? = null
     private var accountAdapter: AccountAdapter? = null
     private var accountList = ArrayList<UserAccount>()
+    private var dialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -171,9 +174,24 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
     }
 
     override fun onItemClick(position: Int) {
+        showAccountInfo()
+        /*var intent=Intent(this@HomeActivity, EditorActivity::class.java)
+        intent.putExtra("forEdit",true)
+        startActivityForResult(
+            intent,
+            OPEN_EDITOR_SCREEN
+        )*/
     }
 
     override fun onStarClick(position: Int) {
+    }
+
+    private fun showAccountInfo(){
+        dialog= Dialog(this)
+        dialog!!.setContentView(R.layout.layout_user_account)
+        dialog!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog!!.setCancelable(false)
+        dialog!!.show()
     }
 
 }

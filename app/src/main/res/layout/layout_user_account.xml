@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_margin="24dp"
+        android:padding="14dp"
+        android:background="@drawable/selector_background">
+
+    <TextView
+            android:id="@+id/tvAccountTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Google"
+            android:textSize="40sp"
+            android:layout_margin="12dp"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivEdit"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivStar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:tint="@color/icon_tint_normal"
+            android:layout_margin="12dp"
+            android:background="@drawable/selector_choose_fav"
+            app:layout_constraintBottom_toBottomOf="@id/tvAccountTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvAccountTitle"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:tint="@color/icon_tint_normal"
+            android:layout_margin="12dp"
+            android:background="@drawable/ic_edit"
+            app:layout_constraintEnd_toStartOf="@id/ivStar"
+            app:layout_constraintBottom_toBottomOf="@id/tvAccountTitle"
+            app:layout_constraintTop_toTopOf="@id/tvAccountTitle"/>
+
+    <TextView
+            android:id="@+id/tvAccountUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="iammohdzaki"
+            android:textSize="24sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tvAccountTitle"
+            />
+
+    <TextView
+            android:id="@+id/tvAccountPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="iammohdzaki"
+            android:textSize="18sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivPasswordView"
+            app:layout_constraintTop_toBottomOf="@id/tvAccountUserName"
+            />
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPasswordView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_padding_size_large"
+            android:padding="@dimen/margin_padding_size_small"
+            android:src="@drawable/ic_hide_pass"
+            app:layout_constraintBottom_toBottomOf="@id/tvAccountPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvAccountPassword" />
+
+    <TextView
+            android:id="@+id/tvAccountEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="mohdzaki407@gmail.com"
+            android:textSize="18sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tvAccountPassword"
+            />
+
+    <TextView
+            android:id="@+id/tvAccountNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="testa ask last LKSD ask"
+            android:textSize="18sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tvAccountEmail"
+            />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

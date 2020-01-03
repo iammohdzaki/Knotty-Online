@@ -21,6 +21,7 @@ class EditorActivity : BaseActivity() ,CallbackListener, KodeinAware {
     override val kodein by kodein()
     private val factory : EditorViewModelFactory by instance()
     private lateinit var editorViewModel: EditorViewModel
+    var forEdit=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,15 @@ class EditorActivity : BaseActivity() ,CallbackListener, KodeinAware {
     }
 
     private fun init(){
-        AlterAccountToolbar.tvToolbarTitle.text = "Add Account"
+        if(intent.hasExtra("forEdit")){
+            forEdit = intent.getBooleanExtra("forEdit",false)
+        }
+
+        if(forEdit){
+            AlterAccountToolbar.tvToolbarTitle.text = "Edit Account"
+        }else{
+            AlterAccountToolbar.tvToolbarTitle.text = "Add Account"
+        }
     }
 
     override fun onStarted() {

@@ -11,7 +11,7 @@ import com.zaphlabs.knotty_online.data.model.UserAccount
 import com.zaphlabs.knotty_online.utils.DateTimeUtil
 import kotlinx.android.synthetic.main.item_view_home_layout.view.*
 
-class AccountAdapter(var mActivity: Activity, private val accountList:ArrayList<UserAccount>, private val recyclerClickListener: RecyclerClickListener  ) :
+class AccountAdapter(private var mActivity: Activity, private val accountList:ArrayList<UserAccount>, private val recyclerClickListener: RecyclerClickListener  ) :
     RecyclerView.Adapter<AccountAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -69,8 +69,8 @@ class AccountAdapter(var mActivity: Activity, private val accountList:ArrayList<
 
         override fun onClick(v: View?) {
             when(v?.id){
-                R.id.ivStar -> recyclerClickListener!!.onStarClick(adapterPosition)
-                else -> recyclerClickListener!!.onItemClick(adapterPosition)
+                R.id.ivStar -> recyclerClickListener.onStarClick(adapterPosition)
+                else -> recyclerClickListener.onItemClick(adapterPosition)
             }
         }
     }
