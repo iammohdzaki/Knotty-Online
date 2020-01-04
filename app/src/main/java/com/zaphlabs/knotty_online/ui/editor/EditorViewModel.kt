@@ -66,6 +66,15 @@ class EditorViewModel(private val manager: DataManager) : BaseViewModel() {
         disposables.add(disposable)
     }
 
+    fun deleteAccount(accountId:String){
+        val disposable=manager.deleteUserAccount(accountId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ callbackListener?.onSuccess() },{ callbackListener?.onFailure(it.message!!)})
+
+        disposables.add(disposable)
+    }
+
     fun performAction(){
         if(forEdit){
             updateAccount()

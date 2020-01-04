@@ -103,10 +103,12 @@ class FirebaseSource {
     /**
      * Delete User Data
      */
-    fun deleteUserData() = Completable.create { emitter ->
-        var documentReference =
-            firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid)
-        documentReference.delete().addOnCompleteListener {
+    fun deleteUserData(accountId: String) = Completable.create { emitter ->
+        firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid).update(
+            mapOf(
+                "accounts.$accountId" to FieldValue.delete()
+            )
+        ).addOnCompleteListener {
             if (!emitter.isDisposed) {
                 if (it.isSuccessful)
                     emitter.onComplete()

@@ -21,7 +21,7 @@ class DataManager(private val firebase: FirebaseSource){
 
     fun getUserData():DocumentReference = firebase.getUserData()
 
-    fun deleteUserData() = firebase.deleteUserData()
+    fun deleteUserAccount(accountId: String) = firebase.deleteUserData(accountId)
 
     fun updateUserAccount(userAccount: UserAccount,accountId: String) = firebase.updateUserAccount(userAccount,accountId)
 
