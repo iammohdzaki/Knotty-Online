@@ -119,17 +119,29 @@ class FirebaseSource {
     /**
      * Update User Data
      */
-    fun updateUserData(userData: User) = Completable.create { emitter ->
-        var documentReference =
-            firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid)
-        documentReference.set(userData).addOnCompleteListener {
-            if (!emitter.isDisposed) {
-                if (it.isSuccessful)
-                    emitter.onComplete()
-                else
-                    emitter.onError(it.exception!!)
+    fun updateUserAccount(userAccount: UserAccount,accountId: String) = Completable.create { emitter ->
+            firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid).update(
+                mapOf(
+                    "accounts.$accountId" to mapOf<String,Any>(
+                        ACCOUNT_ID to userAccount.accountId,
+                        ACCOUNT_TITLE to userAccount.accountTitle.toString(),
+                        ACCOUNT_USER_NAME to userAccount.accountUserName.toString(),
+                        ACCOUNT_EMAIL to userAccount.accountEmail.toString(),
+                        ACCOUNT_PASSWORD to userAccount.accountPassword.toString(),
+                        ACCOUNT_NOTE to userAccount.accountNote.toString(),
+                        ACCOUNT_STARRED to userAccount.accountStarred,
+                        ACCOUNT_TIME_STAMP to userAccount.accountTimeStamp
+                    )
+                )
+            ).addOnCompleteListener {
+                if (!emitter.isDisposed) {
+                    if (it.isSuccessful)
+                        emitter.onComplete()
+                    else
+                        emitter.onError(it.exception!!)
+                }
             }
-        }
+
     }
 
     /**

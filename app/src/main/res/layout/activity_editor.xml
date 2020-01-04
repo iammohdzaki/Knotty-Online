@@ -95,7 +95,7 @@
                 android:id="@+id/btnAlterAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{(v) -> viewModel.addAccount()}"
+                android:onClick="@{(v) -> viewModel.performAction()}"
                 android:layout_margin="@dimen/margin_padding_size_large"
                 android:background="@drawable/selector_btn"
                 android:text="@string/save_account_text"

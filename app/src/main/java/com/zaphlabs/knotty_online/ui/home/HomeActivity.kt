@@ -22,8 +22,6 @@ import com.zaphlabs.knotty_online.ui.customView.OptionsDialog
 import com.zaphlabs.knotty_online.ui.editor.EditorActivity
 import com.zaphlabs.knotty_online.ui.home.adapter.AccountAdapter
 import com.zaphlabs.knotty_online.ui.home.adapter.RecyclerClickListener
-import com.zaphlabs.knotty_online.utils.OPEN_EDITOR_SCREEN
-import com.zaphlabs.knotty_online.utils.STATUS_CODES
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_side_menu.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -35,8 +33,8 @@ import android.app.Dialog
 import android.text.method.PasswordTransformationMethod
 import android.view.ViewGroup
 import com.zaphlabs.knotty_online.R
-import com.zaphlabs.knotty_online.utils.ENCRYPTION_KEY
-import com.zaphlabs.knotty_online.utils.decrypt
+import com.zaphlabs.knotty_online.utils.*
+import com.zaphlabs.knotty_online.utils.STATUS_CODES
 import kotlinx.android.synthetic.main.layout_user_account.*
 
 
@@ -182,12 +180,6 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
 
     override fun onItemClick(position: Int) {
         showAccountInfo(accountList[position])
-        /*var intent=Intent(this@HomeActivity, EditorActivity::class.java)
-        intent.putExtra("forEdit",true)
-        startActivityForResult(
-            intent,
-            OPEN_EDITOR_SCREEN
-        )*/
     }
 
     override fun onStarClick(position: Int) {
@@ -221,6 +213,17 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
                 dialog!!.tvAccountPassword.transformationMethod = null
                 dialog!!.ivPasswordView.setImageResource(R.drawable.ic_show_pass)
             }
+        }
+
+        dialog!!.ivEdit.setOnClickListener {
+            dialog!!.dismiss()
+            var intent=Intent(this@HomeActivity, EditorActivity::class.java)
+            intent.putExtra("forEdit",true)
+            intent.putExtra(USER_MODEL_DATA,userAccount)
+            startActivityForResult(
+                intent,
+               OPEN_EDITOR_SCREEN
+             )
         }
 
         dialog!!.show()

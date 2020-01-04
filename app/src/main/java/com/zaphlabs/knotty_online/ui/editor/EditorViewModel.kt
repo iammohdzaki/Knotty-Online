@@ -21,11 +21,14 @@ class EditorViewModel(private val manager: DataManager) : BaseViewModel() {
     var accountPassword:String ?= null
     var accountNote:String ?= null
     var callbackListener: CallbackListener? = null
+    var accountId=""
+    var isStar=0
+    var forEdit=false
 
     //disposable to dispose the Completable
     private val disposables = CompositeDisposable()
 
-    fun addAccount(){
+    private fun addAccount(){
         var user= UserAccount("",
             accountTitle,
             accountUserName,
@@ -44,4 +47,35 @@ class EditorViewModel(private val manager: DataManager) : BaseViewModel() {
         disposables.add(disposable)
     }
 
+    private fun updateAccount(){
+        var user= UserAccount(accountId,
+            accountTitle,
+            accountUserName,
+            accountPassword?.encrypt(ENCRYPTION_KEY),
+            accountEmail,
+            DateTimeUtil.getFormattedDate( DateTimeUtil.getCurrentDate(), STANDARD_DATE_FORMAT),
+            accountNote,
+            isStar)
+
+        callbackListener?.onStarted()
+        val disposable=manager.updateUserAccount(user,accountId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ callbackListener?.onSuccess() },{ callbackListener?.onFailure(it.message!!)})
+
+        disposables.add(disposable)
+    }
+
+    fun performAction(){
+        if(forEdit){
+            updateAccount()
+        }else{
+            addAccount()
+        }
+    }
+
+    override fun onCleared() {
+        disposables.dispose()
+        super.onCleared()
+    }
 }

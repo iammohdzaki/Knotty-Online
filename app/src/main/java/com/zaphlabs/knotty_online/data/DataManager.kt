@@ -23,7 +23,7 @@ class DataManager(private val firebase: FirebaseSource){
 
     fun deleteUserData() = firebase.deleteUserData()
 
-    fun updateUserData(user: User) = firebase.updateUserData(user)
+    fun updateUserAccount(userAccount: UserAccount,accountId: String) = firebase.updateUserAccount(userAccount,accountId)
 
     fun addUserAccount(userAccount: UserAccount) = firebase.addAccount(userAccount)
 

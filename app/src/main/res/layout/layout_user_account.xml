@@ -34,24 +34,13 @@
             app:layout_constraintTop_toTopOf="@id/tvAccountTitle"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivDelete"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:tint="@color/icon_tint_normal"
-            android:layout_margin="12dp"
-            android:background="@drawable/ic_delete"
-            app:layout_constraintEnd_toStartOf="@id/ivStar"
-            app:layout_constraintBottom_toBottomOf="@id/tvAccountTitle"
-            app:layout_constraintTop_toTopOf="@id/tvAccountTitle"/>
-
-    <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivEdit"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:tint="@color/icon_tint_normal"
             android:layout_margin="12dp"
             android:background="@drawable/ic_edit"
-            app:layout_constraintEnd_toStartOf="@id/ivDelete"
+            app:layout_constraintEnd_toStartOf="@id/ivStar"
             app:layout_constraintBottom_toBottomOf="@id/tvAccountTitle"
             app:layout_constraintTop_toTopOf="@id/tvAccountTitle"/>
 
