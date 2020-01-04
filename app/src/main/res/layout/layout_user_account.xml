@@ -3,9 +3,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_margin="24dp"
-        android:padding="14dp"
+        android:layout_margin="14dp"
+        android:padding="16dp"
         android:background="@drawable/selector_background">
 
     <TextView
@@ -13,8 +12,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Google"
-            android:textSize="40sp"
-            android:layout_margin="12dp"
+            android:textSize="32sp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="4dp"
             android:textAppearance="@style/CustomTextAppearance.Semibold"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +24,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivStar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:tint="@color/icon_tint_normal"
             android:layout_margin="12dp"
             android:background="@drawable/selector_choose_fav"
@@ -34,13 +34,24 @@
             app:layout_constraintTop_toTopOf="@id/tvAccountTitle"/>
 
     <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:tint="@color/icon_tint_normal"
+            android:layout_margin="12dp"
+            android:background="@drawable/ic_delete"
+            app:layout_constraintEnd_toStartOf="@id/ivStar"
+            app:layout_constraintBottom_toBottomOf="@id/tvAccountTitle"
+            app:layout_constraintTop_toTopOf="@id/tvAccountTitle"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivEdit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:tint="@color/icon_tint_normal"
             android:layout_margin="12dp"
             android:background="@drawable/ic_edit"
-            app:layout_constraintEnd_toStartOf="@id/ivStar"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
             app:layout_constraintBottom_toBottomOf="@id/tvAccountTitle"
             app:layout_constraintTop_toTopOf="@id/tvAccountTitle"/>
 
@@ -49,12 +60,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="iammohdzaki"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_marginTop="18dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:textAppearance="@style/CustomTextAppearance.Semibold"
             android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAccountTitle"
             />
 
@@ -63,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="iammohdzaki"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginTop="18dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
@@ -83,6 +95,7 @@
             android:src="@drawable/ic_hide_pass"
             app:layout_constraintBottom_toBottomOf="@id/tvAccountPassword"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvAccountUserName"
             app:layout_constraintTop_toTopOf="@id/tvAccountPassword" />
 
     <TextView
@@ -90,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="mohdzaki407@gmail.com"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginTop="18dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
@@ -104,11 +117,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="testa ask last LKSD ask"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginTop="18dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="18dp"
             android:textAppearance="@style/CustomTextAppearance.Semibold"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/tvAccountEmail"

@@ -8,6 +8,9 @@ import com.zaphlabs.knotty_online.data.remote.CallbackListener
 import com.zaphlabs.knotty_online.data.remote.ResponseCallback
 import com.zaphlabs.knotty_online.ui.base.BaseViewModel
 import com.zaphlabs.knotty_online.utils.*
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 @Suppress("UNCHECKED_CAST")
 class HomeViewModel(private val dataManager: DataManager) : BaseViewModel() {
@@ -16,6 +19,8 @@ class HomeViewModel(private val dataManager: DataManager) : BaseViewModel() {
     var callbackListener: CallbackListener? = null
     var responseCallback: ResponseCallback?= null
     var accountList=ArrayList<UserAccount>()
+    //disposable to dispose the Completable
+    private val disposables = CompositeDisposable()
 
     fun getAllAccounts(){
         callbackListener!!.onStarted()
@@ -51,11 +56,27 @@ class HomeViewModel(private val dataManager: DataManager) : BaseViewModel() {
         }
     }
 
-    fun getUserData(){
-
+    fun starAccount(accountId:String,isStar:Int){
+        callbackListener?.onStarted()
+        val disposable = dataManager.starAccount(accountId,isStar)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                //sending a success callback
+                callbackListener?.onComplete()
+            }, {
+                //sending a failure callback
+                callbackListener?.onFailure(it.message!!)
+            })
+        disposables.add(disposable)
     }
 
     fun logOutUser(){
         dataManager.logout()
+    }
+
+    override fun onCleared() {
+        disposables.dispose()
+        super.onCleared()
     }
 }

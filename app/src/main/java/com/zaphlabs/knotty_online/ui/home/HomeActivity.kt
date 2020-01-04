@@ -1,5 +1,6 @@
 package com.zaphlabs.knotty_online.ui.home
 
+import android.app.ActionBar
 import android.app.Activity
 import android.content.Intent
 import android.opengl.Visibility
@@ -31,7 +32,12 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import android.app.Dialog
+import android.text.method.PasswordTransformationMethod
+import android.view.ViewGroup
 import com.zaphlabs.knotty_online.R
+import com.zaphlabs.knotty_online.utils.ENCRYPTION_KEY
+import com.zaphlabs.knotty_online.utils.decrypt
+import kotlinx.android.synthetic.main.layout_user_account.*
 
 
 class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, CallbackListener,
@@ -137,6 +143,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
     }
 
     override fun onComplete() {
+        viewModel.getAllAccounts()
     }
 
     override fun onFailure(message: String) {
@@ -174,7 +181,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
     }
 
     override fun onItemClick(position: Int) {
-        showAccountInfo()
+        showAccountInfo(accountList[position])
         /*var intent=Intent(this@HomeActivity, EditorActivity::class.java)
         intent.putExtra("forEdit",true)
         startActivityForResult(
@@ -184,13 +191,38 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
     }
 
     override fun onStarClick(position: Int) {
+        viewModel.starAccount(accountList[position].accountId,if(accountList[position].accountStarred == 0) 1 else 0)
     }
 
-    private fun showAccountInfo(){
+    /**
+     * Show User Info Dialog
+     */
+    private fun showAccountInfo(userAccount: UserAccount){
         dialog= Dialog(this)
         dialog!!.setContentView(R.layout.layout_user_account)
         dialog!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog!!.setCancelable(false)
+        dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        //Set Data on Dialog
+        dialog!!.tvAccountTitle.text=userAccount.accountTitle
+        dialog!!.tvAccountUserName.text=userAccount.accountUserName
+        dialog!!.tvAccountPassword.text=userAccount.accountPassword!!.decrypt(ENCRYPTION_KEY)
+        dialog!!.tvAccountEmail.text=userAccount.accountEmail
+        dialog!!.tvAccountNote.text=userAccount.accountNote
+        dialog!!.ivStar.isSelected=userAccount.accountStarred == 1
+        dialog!!.tvAccountPassword.transformationMethod = PasswordTransformationMethod()
+
+        dialog!!.ivPasswordView.setOnClickListener {
+            val isPasswordVisible=dialog!!.tvAccountPassword.transformationMethod == null
+            if(isPasswordVisible){
+                dialog!!.tvAccountPassword.transformationMethod = PasswordTransformationMethod()
+                dialog!!.ivPasswordView.setImageResource(R.drawable.ic_hide_pass)
+            }else{
+                dialog!!.tvAccountPassword.transformationMethod = null
+                dialog!!.ivPasswordView.setImageResource(R.drawable.ic_show_pass)
+            }
+        }
+
         dialog!!.show()
     }
 

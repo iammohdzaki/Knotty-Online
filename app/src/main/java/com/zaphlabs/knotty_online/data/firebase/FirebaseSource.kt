@@ -166,4 +166,31 @@ class FirebaseSource {
         }
     }
 
+    /**
+     * Star Account
+     * @param accountId as Account Id
+     * @param isStar as Starred or Unstar
+     */
+    fun starAccount(accountId:String,isStar:Int) = Completable.create{ emitter ->
+        firestoreDb.collection(USER_COLLECTION).document(firebaseAuth.currentUser!!.uid).update(
+            mapOf(
+                "accounts.$accountId.accountStarred" to isStar
+            )).addOnCompleteListener {
+            if (!emitter.isDisposed) {
+                if (it.isSuccessful)
+                    emitter.onComplete()
+                else
+                    emitter.onError(it.exception!!)
+            }
+        }
+
+    }
+
+    /**
+     * Get All favorite
+     */
+    fun getStarredAccounts(){
+
+    }
+
 }

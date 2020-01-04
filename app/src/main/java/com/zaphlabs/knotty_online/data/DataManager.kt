@@ -27,4 +27,6 @@ class DataManager(private val firebase: FirebaseSource){
 
     fun addUserAccount(userAccount: UserAccount) = firebase.addAccount(userAccount)
 
+    fun starAccount(accountId:String,isStar:Int) = firebase.starAccount(accountId,isStar)
+
 }

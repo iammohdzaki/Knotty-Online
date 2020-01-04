@@ -95,12 +95,23 @@
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivStar"
+                android:visibility="visible"
                 android:layout_width="@dimen/icon_star"
                 android:layout_height="@dimen/icon_star"
                 android:tint="@color/icon_tint_normal"
                 android:background="@drawable/selector_choose_fav"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ProgressBar
+                android:id="@+id/pbDoing"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:visibility="gone"
+                android:backgroundTint="@color/colorAccent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

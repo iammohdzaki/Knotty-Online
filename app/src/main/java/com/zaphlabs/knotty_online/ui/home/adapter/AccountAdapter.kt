@@ -41,6 +41,9 @@ class AccountAdapter(private var mActivity: Activity, private val accountList:Ar
             holder.AccountEmail.text=userAccount.accountEmail
         }
 
+        holder.pbDoing.visibility=View.GONE
+        holder.AccountStarred.visibility=View.VISIBLE
+
         holder.AccountStarred.isSelected = userAccount.accountStarred == 1
 
         var imageText=userAccount.accountTitle!!.subSequence(0,1)
@@ -61,6 +64,7 @@ class AccountAdapter(private var mActivity: Activity, private val accountList:Ar
         val AccountStarred= itemView.ivStar!!
         val AccountEmail= itemView.tvAccountEmailOrNote!!
         val AccountNote= itemView.tvAccountEmailOrNote!!
+        val pbDoing=itemView.pbDoing!!
 
         init {
             itemView.setOnClickListener (this)
@@ -69,7 +73,11 @@ class AccountAdapter(private var mActivity: Activity, private val accountList:Ar
 
         override fun onClick(v: View?) {
             when(v?.id){
-                R.id.ivStar -> recyclerClickListener.onStarClick(adapterPosition)
+                R.id.ivStar -> {
+                    recyclerClickListener.onStarClick(adapterPosition)
+                    pbDoing.visibility=View.VISIBLE
+                    AccountStarred.visibility=View.GONE
+                }
                 else -> recyclerClickListener.onItemClick(adapterPosition)
             }
         }
@@ -78,7 +86,7 @@ class AccountAdapter(private var mActivity: Activity, private val accountList:Ar
     /**
      * chooses a random color from array.xml
      */
-    fun getRandomMaterialColor(typeColor: String): Int {
+    private fun getRandomMaterialColor(typeColor: String): Int {
         var returnColor = Color.GRAY
         val arrayId = mActivity.resources.getIdentifier("mdcolor_$typeColor", "array", mActivity.packageName)
 
