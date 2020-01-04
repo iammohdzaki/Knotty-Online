@@ -67,6 +67,7 @@ class EditorViewModel(private val manager: DataManager) : BaseViewModel() {
     }
 
     fun deleteAccount(accountId:String){
+        callbackListener?.onStarted()
         val disposable=manager.deleteUserAccount(accountId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

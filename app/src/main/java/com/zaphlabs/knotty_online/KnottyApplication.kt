@@ -6,6 +6,7 @@ import com.zaphlabs.knotty_online.data.DataManager
 import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
 import com.zaphlabs.knotty_online.ui.editor.EditorViewModel
 import com.zaphlabs.knotty_online.ui.editor.EditorViewModelFactory
+import com.zaphlabs.knotty_online.ui.favorite.FavoriteViewModelFactory
 import com.zaphlabs.knotty_online.ui.onBoarding.AuthViewModelFactory
 import com.zaphlabs.knotty_online.ui.home.HomeViewModelFactory
 import io.paperdb.Paper
@@ -30,6 +31,7 @@ class KnottyApplication : Application() , KodeinAware{
             bind() from provider { AuthViewModelFactory(instance()) }
             bind() from provider { HomeViewModelFactory(instance()) }
             bind() from provider { EditorViewModelFactory(instance()) }
+            bind() from provider { FavoriteViewModelFactory(instance()) }
 
         }
 
