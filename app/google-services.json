@@ -1,50 +1,34 @@
 {
   "project_info": {
-    "project_number": "1004587281039",
-    "firebase_url": "https://knotty-online-e4ca8.firebaseio.com",
-    "project_id": "knotty-online-e4ca8",
-    "storage_bucket": "knotty-online-e4ca8.appspot.com"
+    "project_number": "659945107736",
+    "firebase_url": "https://knot-chat.firebaseio.com",
+    "project_id": "knot-chat",
+    "storage_bucket": "knot-chat.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1004587281039:android:21376383cda06447",
+        "mobilesdk_app_id": "1:659945107736:android:da16658ad5304a85382e6d",
         "android_client_info": {
-          "package_name": "com.zaphlabs.knotty_online"
+          "package_name": "com.zaphlabs.knot"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1004587281039-i12m834vl7s579hdnaim0td3t77756et.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.zaphlabs.knotty_online",
-            "certificate_hash": "26a05c3808e831a610241b72d1588fdfdd833c79"
-          }
-        },
-        {
-          "client_id": "1004587281039-rh7n0d21trpbt527f85carp8nf9pi6a2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.zaphlabs.knotty_online",
-            "certificate_hash": "9e8f55db60e996076e1b24fcc63991cdc0fde2b9"
-          }
-        },
-        {
-          "client_id": "1004587281039-7ccvnq6pgehkbuld4qndjehg1d85aeot.apps.googleusercontent.com",
+          "client_id": "659945107736-phiru218h0h8qt29emdemo4jntfukt2t.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAj-BOMJKQh5sLTPSnZJVlPFnPDF2oUlRU"
+          "current_key": "AIzaSyANNtZj7oMOLKljVFXK3WLjeCKGDDRwQCI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1004587281039-7ccvnq6pgehkbuld4qndjehg1d85aeot.apps.googleusercontent.com",
+              "client_id": "659945107736-phiru218h0h8qt29emdemo4jntfukt2t.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

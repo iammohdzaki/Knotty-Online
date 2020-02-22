@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Knotty-Online</string>
+    <string name="app_name">Knot Chat</string>
     <!-- Root Message -->
     <string name="error_device_rooted">This device is rooted. We are not responsible for any kind of data loss and hack.
         Use it at your own risk!!
@@ -75,4 +75,7 @@
     <string name="ok_text">OK</string>
     <string name="view_text">View</string>
     <string name="message">Message</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

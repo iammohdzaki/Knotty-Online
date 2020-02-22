@@ -27,9 +27,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                <include
-                        android:id="@+id/homeToolbar"
-                        layout="@layout/layout_toolbar" />
+                <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Hello Zaki!"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="10dp"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textSize="30dp"
+                        android:padding="10dp"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
                 <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/glStart"
@@ -46,7 +56,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:layout_constraintTop_toBottomOf="@id/homeToolbar"
+                        app:layout_constraintTop_toBottomOf="@id/tvName"
                         android:orientation="vertical"
                         shimmer:duration="800">
 
@@ -55,8 +65,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-                        <include layout="@layout/data_placeholder_layout" />
-                        <include layout="@layout/data_placeholder_layout" />
+                        <include layout="@layout/side_menu_placeholder"/>
+                        <include layout="@layout/data_placeholder_tasks"/>
                         <include layout="@layout/data_placeholder_layout" />
                         <include layout="@layout/data_placeholder_layout" />
                         <include layout="@layout/data_placeholder_layout" />
@@ -75,6 +85,15 @@
                         />
 
                 <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvUpcomingTasks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@id/tvName"
+                        />
+
+                <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvManageAccount"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -84,7 +103,7 @@
                         app:layout_constraintEnd_toEndOf="@id/glEnd"
                         app:layout_constraintHeight_max="wrap"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/homeToolbar"
+                        app:layout_constraintTop_toBottomOf="@id/rvUpcomingTasks"
                         app:layout_constraintVertical_bias="0"
                         app:layout_constraintVertical_chainStyle="packed">
 
@@ -118,17 +137,54 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <com.google.android.material.bottomappbar.BottomAppBar
+                    android:id="@+id/bottomAppBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:fabAlignmentMode="center"
+                    app:hideOnScroll="true"
+                    app:fabCradleRoundedCornerRadius="16dp"
+                    app:menu="@menu/menu_home"
+                    app:navigationIcon="@drawable/ic_menu"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="4dp"
+                    />
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/addAccount"
+                    android:id="@+id/fbAddEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_anchor="@id/bottomAppBar"
+                    android:src="@drawable/ic_add_black_24dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:tint="@color/colorAccent"
+                    />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fbTasks"
+                    android:layout_gravity="start|bottom"
+                    android:backgroundTint="@color/colorAccent"
+                    android:src="@drawable/ic_chat"
+                    android:tint="@color/colorAccent"
+                    android:visibility="gone"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="90dp"
+                    />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"
-                    android:layout_marginEnd="@dimen/margin_padding_size_normal"
-                    android:layout_marginBottom="@dimen/margin_padding_size_normal"
+                    android:visibility="gone"
                     android:background="@color/colorAccent"
                     android:src="@drawable/ic_add_account"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="90dp"/>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

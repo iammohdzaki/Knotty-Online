@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.zaphlabs.knotty_online.R
-import com.zaphlabs.knotty_online.data.model.UserAccount
-import com.zaphlabs.knotty_online.utils.DateTimeUtil
 import kotlinx.android.synthetic.main.item_view_home_layout.view.*
 
-class AccountAdapter(private var mActivity: Activity, private val accountList:ArrayList<UserAccount>, private val recyclerClickListener: RecyclerClickListener  ) :
+class AccountAdapter(private var mActivity: Activity, private val accountList:ArrayList<String>, private val recyclerClickListener: RecyclerClickListener  ) :
     RecyclerView.Adapter<AccountAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,28 +24,6 @@ class AccountAdapter(private var mActivity: Activity, private val accountList:Ar
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val userAccount=accountList[position]
-
-        holder.AccountUserName.text=userAccount.accountUserName
-        holder.AccountTitle.text=userAccount.accountTitle
-
-        holder.AccountTimeStamp.text=DateTimeUtil.getRelativeTimeWithCurrentTime(
-            DateTimeUtil.getDate(userAccount.accountTimeStamp))
-
-        if(userAccount.accountEmail.isNullOrEmpty()){
-            if(!userAccount.accountNote.isNullOrEmpty()){
-                holder.AccountNote.text=userAccount.accountNote
-            }
-        }else{
-            holder.AccountEmail.text=userAccount.accountEmail
-        }
-
-        holder.pbDoing.visibility=View.GONE
-        holder.AccountStarred.visibility=View.VISIBLE
-
-        holder.AccountStarred.isSelected = userAccount.accountStarred == 1
-
-        var imageText=userAccount.accountTitle!!.subSequence(0,1)
-        holder.AccountIconText.text=imageText
 
         holder.AccountImage.setColorFilter(getRandomMaterialColor("400"))
 
@@ -98,16 +74,4 @@ class AccountAdapter(private var mActivity: Activity, private val accountList:Ar
         }
         return returnColor
     }
-
-    fun removeAt(position: Int) {
-        accountList.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
-    fun restoreItem(userAccounts: UserAccount, position: Int) {
-        accountList.add(position,userAccounts)
-        notifyItemInserted(position)
-    }
-
-
 }

@@ -3,7 +3,6 @@ package com.zaphlabs.knotty_online.data
 import com.google.firebase.firestore.DocumentReference
 import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
 import com.zaphlabs.knotty_online.data.model.User
-import com.zaphlabs.knotty_online.data.model.UserAccount
 
 class DataManager(private val firebase: FirebaseSource){
 
@@ -22,11 +21,5 @@ class DataManager(private val firebase: FirebaseSource){
     fun getUserData():DocumentReference = firebase.getUserData()
 
     fun deleteUserAccount(accountId: String) = firebase.deleteUserData(accountId)
-
-    fun updateUserAccount(userAccount: UserAccount,accountId: String) = firebase.updateUserAccount(userAccount,accountId)
-
-    fun addUserAccount(userAccount: UserAccount) = firebase.addAccount(userAccount)
-
-    fun starAccount(accountId:String,isStar:Int) = firebase.starAccount(accountId,isStar)
 
 }

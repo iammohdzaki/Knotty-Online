@@ -17,7 +17,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
-        applicationId "com.zaphlabs.knotty_online"
+        applicationId "com.zaphlabs.knot"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
@@ -120,8 +120,10 @@ dependencies {
      */
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
+    implementation "com.google.android.material:material:1.2.0-alpha04"
 
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
