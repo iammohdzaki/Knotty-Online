@@ -1,11 +1,15 @@
 package com.zaphlabs.knotty_online.data.firebase
 
+import android.net.Uri
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.zaphlabs.knotty_online.data.model.Message
 import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.utils.*
@@ -27,6 +31,10 @@ class FirebaseSource {
 
     private val firebaseDb:FirebaseDatabase by lazy {
         FirebaseDatabase.getInstance()
+    }
+
+    private val firebaseStorage:FirebaseStorage by lazy {
+        FirebaseStorage.getInstance()
     }
 
     /**
@@ -169,6 +177,10 @@ class FirebaseSource {
                         emitter.onError(it.exception!!)
                 }
             }
+    }
+
+    fun uploadImage():StorageReference{
+        return firebaseStorage.reference.child("chat_photos")
     }
 
 }

@@ -1,6 +1,9 @@
 package com.zaphlabs.knotty_online.ui.chat
 
+import android.net.Uri
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.storage.UploadTask
 import com.zaphlabs.knotty_online.data.DataManager
 import com.zaphlabs.knotty_online.data.model.Message
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
@@ -8,6 +11,7 @@ import com.zaphlabs.knotty_online.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.net.URI
 
 /**
  * Developer : Mohammad Zaki
@@ -40,9 +44,15 @@ class ChatViewModel(private val dataManager: DataManager):BaseViewModel() {
         return dataManager.currentUser()!!.uid
     }
 
- /*   fun getUserName():String{
-
-    }*/
+     fun uploadImage(uri: Uri):String{
+        var imageUrl:String = ""
+         val result = dataManager.getStoreageRef().putFile(uri).addOnSuccessListener {
+             if(it.task.isSuccessful){
+                  imageUrl = it.storage.downloadUrl.toString()
+             }
+         }
+        return imageUrl
+    }
 
     override fun onCleared() {
         disposables.dispose()

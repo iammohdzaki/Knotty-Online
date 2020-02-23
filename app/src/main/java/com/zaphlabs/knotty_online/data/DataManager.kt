@@ -4,6 +4,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.storage.StorageReference
 import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
 import com.zaphlabs.knotty_online.data.model.Message
 import com.zaphlabs.knotty_online.data.model.User
@@ -31,5 +32,7 @@ class DataManager(private val firebase: FirebaseSource){
     fun getDatabaseRefrence():DatabaseReference = firebase.getDatabaseReference()
 
     fun firebaseAuthWithGoogle(account:GoogleSignInAccount) = firebase.firebaseAuthWithGoogle(account)
+
+    fun getStoreageRef():StorageReference = firebase.uploadImage()
 
 }

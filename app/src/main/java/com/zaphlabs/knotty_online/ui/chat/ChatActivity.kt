@@ -1,5 +1,7 @@
 package com.zaphlabs.knotty_online.ui.chat
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
@@ -40,6 +42,7 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
     private val factory: ChatViewModelFactory by instance()
     private lateinit var viewModel: ChatViewModel
     private var mChildEventListener:ChildEventListener ?= null
+    private val RC_PHOTO_PICKER=2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +60,7 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
         tvToolbarTitle.visibility= View.VISIBLE
         tvToolbarTitle.text="Group Chat"
 
-        setOnClickListeners(this,tvSendMessage)
+        setOnClickListeners(this,tvSendMessage,ivSendImage)
 
         etMessageField.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
@@ -94,9 +97,15 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
     override fun onClick(view: View?) {
         when(view!!.id){
             tvSendMessage.id ->{
-                viewModel.sendMessage(Message(viewModel.getUserId(),"Zaki",etMessageField.text.toString(),null, MESSAGE_SEND))
+                viewModel.sendMessage(Message(viewModel.getUserId(),viewModel.user!!.displayName,etMessageField.text.toString(),null, MESSAGE_SEND))
                 //hideKeyboard()
                 etMessageField.setText("")
+            }
+            ivSendImage.id ->{
+                var intent= Intent(Intent.ACTION_GET_CONTENT)
+                intent.setType("image/jpeg");
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
             }
         }
     }
@@ -141,5 +150,15 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
     override fun onFailure(message: String) {
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == RC_PHOTO_PICKER){
+            if(resultCode == Activity.RESULT_OK) {
+                var selectedImage = data!!.data
+
+            }
+        }
+    }
 
 }

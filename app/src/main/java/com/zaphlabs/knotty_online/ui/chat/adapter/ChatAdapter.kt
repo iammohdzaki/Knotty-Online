@@ -87,6 +87,7 @@ class ChatAdapter(private var mActivity: Activity, private var currentUserId:Str
                 (holder as ReceiveViewHolder).ivMessage.visibility=View.GONE
                 (holder as ReceiveViewHolder).tvMessage.text=messageList[position].message
             }
+            (holder as ReceiveViewHolder).tvUserName.text=messageList[position].userName
         }
     }
 
@@ -116,6 +117,7 @@ class ChatAdapter(private var mActivity: Activity, private var currentUserId:Str
 
         val ivMessage = itemView.ivMessage!!
         val tvMessage = itemView.tvMessage!!
+        val tvUserName=itemView.tvUserName!!
 
         init {
             itemView.setOnClickListener(this)
