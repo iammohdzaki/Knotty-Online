@@ -50,6 +50,7 @@
     <style name="edit_text_view">
         <item name="android:layout_height">wrap_content</item>
         <item name="met_floatingLabel">normal</item>
+        <item name="android:textAppearance">@style/CustomTextAppearance</item>
         <item name="android:background">@drawable/selector_edit_text</item>
         <item name="android:layout_marginStart">@dimen/margin_padding_size_large</item>
         <item name="android:layout_marginEnd">@dimen/margin_padding_size_large</item>

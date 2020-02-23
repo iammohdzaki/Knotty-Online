@@ -90,7 +90,7 @@
                 android:onClick="@{(v) -> viewmodel.signUpUser()}"
                 android:background="@drawable/selector_btn"
                 android:text="@string/sign_up_text"
-                android:textAppearance="@style/MontserratSemiBold"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
                 android:textColor="@color/white"
                 app:layout_constraintTop_toBottomOf="@id/metSignUpConfirmPassword" />
 
@@ -101,7 +101,7 @@
                 android:gravity="center"
                 android:layout_marginTop="@dimen/margin_padding_size_large"
                 android:text="@string/already_account"
-                android:textAppearance="@style/MontserratBold"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/font_normal"
                 android:onClick="@{(v) -> viewmodel.goToLogin(v)}"

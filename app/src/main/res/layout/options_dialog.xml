@@ -47,7 +47,7 @@
             android:layout_height="50dp"
             android:layout_below="@+id/tvMessage">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -63,12 +63,12 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/darker_gray" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnOk"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="@drawable/button_dialog_right"
                 android:text="OK"
                 android:textAllCaps="true"
                 android:textColor="@color/white"

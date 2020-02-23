@@ -65,4 +65,11 @@ internal interface DateFormat {
     }
 }
 
+internal interface ViewType{
+    companion object{
+        val MESSAGE_SEND=0
+        val MESSAGE_RECEIVE=1
+    }
+}
+
 

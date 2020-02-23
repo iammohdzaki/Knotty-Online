@@ -24,6 +24,7 @@ import org.kodein.di.generic.instance
 import android.app.Dialog
 import android.view.animation.AnimationUtils
 import com.zaphlabs.knotty_online.R
+import com.zaphlabs.knotty_online.ui.chat.ChatActivity
 import com.zaphlabs.knotty_online.utils.*
 import com.zaphlabs.knotty_online.utils.STATUS_CODES
 
@@ -154,7 +155,7 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
                 //Open Todo list
             }
             R.id.fabAccount -> {
-
+                startActivity(Intent(this@HomeActivity,ChatActivity::class.java))
             }
             R.id.tvFavorites -> {
             }

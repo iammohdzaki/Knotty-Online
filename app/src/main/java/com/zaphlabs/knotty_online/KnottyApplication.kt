@@ -39,7 +39,7 @@ class KnottyApplication : Application() , KodeinAware{
         //Calligraphy init for fonts
         CalligraphyConfig.initDefault(
             CalligraphyConfig.Builder()
-                .setDefaultFontPath("font/Montserrat-Regular.ttf")
+                .setDefaultFontPath("font/GoogleSans-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         )

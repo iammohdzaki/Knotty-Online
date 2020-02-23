@@ -11,7 +11,7 @@
     <item>
         <shape>
             <corners android:bottomRightRadius="3dp" android:radius="0dp" />
-            <solid android:color="@color/popup_btn_bg_color" />
+            <solid android:color="@color/colorAccent" />
         </shape>
     </item>
 

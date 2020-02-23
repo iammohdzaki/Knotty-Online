@@ -12,5 +12,6 @@ data class User(
 data class Message(
     var userName:String ?= null,
     var message: String ?= null,
-    var photoUrl:String ?= null
+    var photoUrl:String ?= null,
+    var messageType:Int?= null
 ):Parcelable
