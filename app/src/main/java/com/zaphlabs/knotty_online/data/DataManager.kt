@@ -1,7 +1,9 @@
 package com.zaphlabs.knotty_online.data
 
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.DocumentReference
 import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
+import com.zaphlabs.knotty_online.data.model.Message
 import com.zaphlabs.knotty_online.data.model.User
 
 class DataManager(private val firebase: FirebaseSource){
@@ -21,5 +23,9 @@ class DataManager(private val firebase: FirebaseSource){
     fun getUserData():DocumentReference = firebase.getUserData()
 
     fun deleteUserAccount(accountId: String) = firebase.deleteUserData(accountId)
+
+    fun sendMessage(message: Message) = firebase.sendMessage(message)
+
+    fun getDatabaseRefrence():DatabaseReference = firebase.getDatabaseReference()
 
 }

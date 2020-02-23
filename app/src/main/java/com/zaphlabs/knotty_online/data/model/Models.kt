@@ -10,6 +10,7 @@ data class User(
 
 @Parcelize
 data class Message(
+    var userId:String ?= null,
     var userName:String ?= null,
     var message: String ?= null,
     var photoUrl:String ?= null,

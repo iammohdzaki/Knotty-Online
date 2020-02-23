@@ -12,6 +12,7 @@ const val UPDATE = "update"
 const val SPLASH_WAIT_TIME: Long = 3000
 const val ENCRYPTION_KEY="z1a2p3h4l5a6b7s8"
 const val REQUEST_DIRECTORY=100
+const val DEFAULT_MSG_LENGTH_LIMIT=1000
 
 //FireSTore DB
 const val USER_COLLECTION="users"

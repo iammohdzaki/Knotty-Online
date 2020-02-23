@@ -1,4 +1,4 @@
-package com.zaphlabs.knotty_online.ui.chat
+package com.zaphlabs.knotty_online.ui.chat.adapter
 
 import android.app.Activity
 import android.graphics.Color
@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.item_view_message_send.view.tvMessage
  * Created On : 22-02-2020
  */
 
-class ChatAdapter(private var mActivity: Activity, private val messageList:ArrayList<Message>, private val recyclerClickListener: RecyclerClickListener) :
+class ChatAdapter(private var mActivity: Activity, private var currentUserId:String,private val messageList:ArrayList<Message>, private val recyclerClickListener: RecyclerClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -30,17 +30,26 @@ class ChatAdapter(private var mActivity: Activity, private val messageList:Array
             MESSAGE_SEND -> {
                 view= LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_view_message_send, parent, false)
-                return SendViewHolder(view,recyclerClickListener)
+                return SendViewHolder(
+                    view,
+                    recyclerClickListener
+                )
             }
             MESSAGE_RECEIVE -> {
                 view =  LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_view_message_receive, parent, false)
-                return ReceiveViewHolder(view,recyclerClickListener)
+                return ReceiveViewHolder(
+                    view,
+                    recyclerClickListener
+                )
             }
             else ->{
                 view= LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_view_message_send, parent, false)
-                return SendViewHolder(view,recyclerClickListener)
+                return SendViewHolder(
+                    view,
+                    recyclerClickListener
+                )
             }
         }
 
@@ -52,38 +61,33 @@ class ChatAdapter(private var mActivity: Activity, private val messageList:Array
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        when(messageList[position].messageType){
-            MESSAGE_SEND ->{
-                if(messageList[position].photoUrl != null){
-                    (holder as SendViewHolder).tvMessage.visibility=View.GONE
-                    (holder as SendViewHolder).ivMessage.visibility=View.VISIBLE
+        if(currentUserId == messageList[position].userId){
+            if(messageList[position].photoUrl != null){
+                (holder as SendViewHolder).tvMessage.visibility=View.GONE
+                (holder as SendViewHolder).ivMessage.visibility=View.VISIBLE
 
-                    Glide.with(mActivity)
-                        .load(messageList[position].photoUrl)
-                        .into((holder as SendViewHolder).ivMessage)
-                }else{
-                    (holder as SendViewHolder).tvMessage.visibility=View.VISIBLE
-                    (holder as SendViewHolder).ivMessage.visibility=View.GONE
-                    (holder as SendViewHolder).tvMessage.text=messageList[position].message
-                }
+                Glide.with(mActivity)
+                    .load(messageList[position].photoUrl)
+                    .into((holder as SendViewHolder).ivMessage)
+            }else{
+                (holder as SendViewHolder).tvMessage.visibility=View.VISIBLE
+                (holder as SendViewHolder).ivMessage.visibility=View.GONE
+                (holder as SendViewHolder).tvMessage.text=messageList[position].message
             }
-            MESSAGE_RECEIVE ->{
-                if(messageList[position].photoUrl != null){
-                    (holder as ReceiveViewHolder).tvMessage.visibility=View.GONE
-                    (holder as ReceiveViewHolder).ivMessage.visibility=View.VISIBLE
+        }else{
+            if(messageList[position].photoUrl != null){
+                (holder as ReceiveViewHolder).tvMessage.visibility=View.GONE
+                (holder as ReceiveViewHolder).ivMessage.visibility=View.VISIBLE
 
-                    Glide.with(mActivity)
-                        .load(messageList[position].photoUrl)
-                        .into((holder as ReceiveViewHolder).ivMessage)
-                }else{
-                    (holder as ReceiveViewHolder).tvMessage.visibility=View.VISIBLE
-                    (holder as ReceiveViewHolder).ivMessage.visibility=View.GONE
-                    (holder as ReceiveViewHolder).tvMessage.text=messageList[position].message
-                }
+                Glide.with(mActivity)
+                    .load(messageList[position].photoUrl)
+                    .into((holder as ReceiveViewHolder).ivMessage)
+            }else{
+                (holder as ReceiveViewHolder).tvMessage.visibility=View.VISIBLE
+                (holder as ReceiveViewHolder).ivMessage.visibility=View.GONE
+                (holder as ReceiveViewHolder).tvMessage.text=messageList[position].message
             }
         }
-
-
     }
 
     class SendViewHolder(itemView: View, private var recyclerClickListener: RecyclerClickListener) :
@@ -126,14 +130,12 @@ class ChatAdapter(private var mActivity: Activity, private val messageList:Array
         }
     }
 
-    override fun getItemViewType(position: Int): Int = when(messageList[position].messageType){
-        MESSAGE_SEND ->{
+    override fun getItemViewType(position: Int): Int{
+        return if(currentUserId == messageList[position].userId){
             MESSAGE_SEND
-        }
-        MESSAGE_RECEIVE -> {
+        }else{
             MESSAGE_RECEIVE
         }
-        else -> -1
     }
 
     /**

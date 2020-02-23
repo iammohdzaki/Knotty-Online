@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.zaphlabs.knotty_online.data.DataManager
 import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
+import com.zaphlabs.knotty_online.ui.chat.ChatViewModelFactory
 import com.zaphlabs.knotty_online.ui.onBoarding.AuthViewModelFactory
 import com.zaphlabs.knotty_online.ui.home.HomeViewModelFactory
 import io.paperdb.Paper
@@ -27,6 +28,7 @@ class KnottyApplication : Application() , KodeinAware{
             bind() from singleton { DataManager(instance()) }
             bind() from provider { AuthViewModelFactory(instance()) }
             bind() from provider { HomeViewModelFactory(instance()) }
+            bind() from provider { ChatViewModelFactory(instance()) }
 
         }
 

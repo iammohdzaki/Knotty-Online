@@ -1,7 +1,10 @@
 package com.zaphlabs.knotty_online.data.firebase
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.*
+import com.zaphlabs.knotty_online.data.model.Message
 import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.utils.*
 import io.reactivex.Completable
@@ -16,6 +19,10 @@ class FirebaseSource {
 
     private val firestoreDb: FirebaseFirestore by lazy {
         FirebaseFirestore.getInstance()
+    }
+
+    private val firebaseDb:FirebaseDatabase by lazy {
+        FirebaseDatabase.getInstance()
     }
 
     /**
@@ -117,5 +124,28 @@ class FirebaseSource {
         }
     }
 
+
+    fun getMessages(){
+        var databaseReference=firebaseDb.reference.child("messages")
+    }
+
+    fun getDatabaseReference():DatabaseReference{
+        return firebaseDb.reference.child("messages")
+    }
+
+    /**
+     * Send Message
+     */
+    fun sendMessage(message: Message) = Completable.create{emitter ->
+        firebaseDb.reference.child("messages").push().setValue(message)
+            .addOnCompleteListener {
+                if(!emitter.isDisposed){
+                    if(it.isSuccessful)
+                        emitter.onComplete()
+                    else
+                        emitter.onError(it.exception!!)
+                }
+            }
+    }
 
 }
