@@ -2,6 +2,8 @@ package com.zaphlabs.knotty_online.ui.onBoarding
 
 import android.content.Intent
 import android.view.View
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.zaphlabs.knotty_online.data.DataManager
 import com.zaphlabs.knotty_online.data.model.User
 import com.zaphlabs.knotty_online.ui.base.BaseViewModel
@@ -9,6 +11,9 @@ import com.zaphlabs.knotty_online.ui.home.HomeActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+
+
 
 class AuthViewModel(private val manager: DataManager) : BaseViewModel() {
 
@@ -119,6 +124,19 @@ class AuthViewModel(private val manager: DataManager) : BaseViewModel() {
         Intent(view.context, ForgotPasswordActivity::class.java).also {
             view.context.startActivity(it)
         }
+    }
+
+    fun firebaseAuthWithGoogle(account:GoogleSignInAccount){
+        authListener?.onStarted()
+        val disposable = manager.firebaseAuthWithGoogle(account)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                authListener?.onSuccess()
+            }, {
+                authListener?.onFailure(it.message!!)
+            })
+        disposables.add(disposable)
     }
 
     override fun onCleared() {

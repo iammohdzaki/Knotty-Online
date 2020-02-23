@@ -1,6 +1,8 @@
 package com.zaphlabs.knotty_online.data.firebase
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.*
@@ -12,6 +14,8 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class FirebaseSource {
+
+    val TAG="Firebase Source"
 
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
@@ -124,6 +128,25 @@ class FirebaseSource {
         }
     }
 
+     fun firebaseAuthWithGoogle(acct: GoogleSignInAccount)  = Completable.create { emitter ->
+         //Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
+
+         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+         firebaseAuth.signInWithCredential(credential)
+             .addOnCompleteListener { task ->
+
+                 if (!emitter.isDisposed) {
+                     if (task.isSuccessful) {
+                         //Log.d(TAG, "signInWithCredential:success")
+                         emitter.onComplete()
+                     }
+                     else {
+                         emitter.onError(task.exception!!)
+                         //Log.w(TAG, "signInWithCredential:failure", task.exception!!)
+                     }
+                 }
+             }
+     }
 
     fun getMessages(){
         var databaseReference=firebaseDb.reference.child("messages")

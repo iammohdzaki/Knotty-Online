@@ -5,6 +5,8 @@
         Use it at your own risk!!
     </string>
 
+    <string name="web_client_id">659945107736-phiru218h0h8qt29emdemo4jntfukt2t.apps.googleusercontent.com</string>
+
     <string-array name="security_questions">
         <item>What is your favorite food ?</item>
         <item>What is your favorite animal ?</item>

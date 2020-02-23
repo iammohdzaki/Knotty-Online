@@ -1,5 +1,7 @@
 package com.zaphlabs.knotty_online.data
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.DocumentReference
 import com.zaphlabs.knotty_online.data.firebase.FirebaseSource
@@ -27,5 +29,7 @@ class DataManager(private val firebase: FirebaseSource){
     fun sendMessage(message: Message) = firebase.sendMessage(message)
 
     fun getDatabaseRefrence():DatabaseReference = firebase.getDatabaseReference()
+
+    fun firebaseAuthWithGoogle(account:GoogleSignInAccount) = firebase.firebaseAuthWithGoogle(account)
 
 }

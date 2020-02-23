@@ -127,7 +127,7 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_padding_size_large"
-            android:onClick="@{(v) -> viewmodel.loginUser()}"
+            android:onClick="performGoogleSignIn"
             android:background="@drawable/selector_btn"
             android:text="Sign In"
             android:drawableStart="@drawable/ic_google_plus"

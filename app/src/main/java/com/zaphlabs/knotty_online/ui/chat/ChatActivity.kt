@@ -112,7 +112,7 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
             override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
                 messageList.add(0,snapshot.getValue(Message::class.java) ?: Message())
                 chatAdapter!!.notifyItemInserted(0)
-                //rvChat.scrollToPosition(0)
+                rvChat.scrollToPosition(0)
             }
             override fun onChildRemoved(p0: DataSnapshot) {
             }
