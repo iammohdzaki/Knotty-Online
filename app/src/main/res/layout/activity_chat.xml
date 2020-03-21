@@ -25,9 +25,35 @@
             android:layout_height="0dp"
             tools:listitem="@layout/item_view_message_send"
             tools:itemCount="8"
+            android:visibility="visible"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/toolbarChat"
             app:layout_constraintBottom_toTopOf="@id/toolbarMessage"
+            />
+
+    <ProgressBar
+            android:id="@+id/pbLoadChats"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    <TextView
+            android:id="@+id/tvAdditonalMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Something Bad Happened !"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
     <include layout="@layout/layout_send_message_toolbar"

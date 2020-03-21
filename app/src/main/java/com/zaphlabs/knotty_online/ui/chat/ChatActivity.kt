@@ -83,7 +83,7 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
 
     private fun setUpAdapter(){
         var linearLayoutManager=LinearLayoutManager(this)
-        linearLayoutManager.stackFromEnd=true
+        //linearLayoutManager.stackFromEnd=true
         rvChat.layoutManager=linearLayoutManager
         chatAdapter = ChatAdapter(
             this@ChatActivity,
@@ -103,7 +103,7 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
             }
             ivSendImage.id ->{
                 var intent= Intent(Intent.ACTION_GET_CONTENT)
-                intent.setType("image/jpeg");
+                intent.type = "image/jpeg";
                 intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
                 startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
             }
@@ -111,6 +111,8 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
     }
 
     private fun messageListener(){
+        rvChat.visibility=View.GONE
+        pbLoadChats.visibility=View.VISIBLE
         mChildEventListener = object : ChildEventListener{
             override fun onCancelled(p0: DatabaseError) {
             }
@@ -119,13 +121,14 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
             }
             override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
-                messageList.add(0,snapshot.getValue(Message::class.java) ?: Message())
-                chatAdapter!!.notifyItemInserted(0)
-                rvChat.scrollToPosition(0)
+                rvChat.visibility=View.VISIBLE
+                pbLoadChats.visibility=View.GONE
+                messageList.add(messageList.size,snapshot.getValue(Message::class.java) ?: Message())
+                chatAdapter!!.notifyItemInserted(messageList.size)
+                rvChat.scrollToPosition(chatAdapter!!.itemCount - 1)
             }
             override fun onChildRemoved(p0: DataSnapshot) {
             }
-
         }
         viewModel.getDatabaseReference().addChildEventListener(mChildEventListener!!)
     }
@@ -138,16 +141,31 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
     }
 
     override fun onStarted() {
-
+       /* pbLoadChats.visibility=View.VISIBLE
+        rvChat.visibility=View.GONE
+        tvAdditonalMessage.visibility=View.GONE*/
     }
 
     override fun onSuccess() {
+        /*pbLoadChats.visibility=View.GONE
+        rvChat.visibility=View.GONE*/
     }
 
     override fun onComplete() {
+        /*if(messageList.size <= 0){
+            rvChat.visibility=View.GONE
+            tvAdditonalMessage.text="Be the first one to send message!"
+            tvAdditonalMessage.visibility=View.VISIBLE
+        }else{
+            tvAdditonalMessage.visibility=View.GONE
+            rvChat.visibility=View.VISIBLE
+        }*/
     }
 
     override fun onFailure(message: String) {
+        /*pbLoadChats.visibility=View.GONE
+        tvAdditonalMessage.text=message
+        tvAdditonalMessage.visibility=View.VISIBLE*/
     }
 
 

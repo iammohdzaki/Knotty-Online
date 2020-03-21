@@ -32,7 +32,9 @@ class ChatViewModel(private val dataManager: DataManager):BaseViewModel() {
         val disposable=dataManager.sendMessage(message)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ callbackListener?.onSuccess() }, { callbackListener?.onFailure(it.message!!) })
+            .subscribe({ callbackListener?.onSuccess()
+            callbackListener?.onComplete()},
+                { callbackListener?.onFailure(it.message!!) })
         disposables.add(disposable)
     }
 
