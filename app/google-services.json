@@ -1,34 +1,71 @@
 {
   "project_info": {
-    "project_number": "659945107736",
-    "firebase_url": "https://knot-chat.firebaseio.com",
-    "project_id": "knot-chat",
-    "storage_bucket": "knot-chat.appspot.com"
+    "project_number": "838891138487",
+    "firebase_url": "https://jibble-ffd5f.firebaseio.com",
+    "project_id": "jibble-ffd5f",
+    "storage_bucket": "jibble-ffd5f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:659945107736:android:da16658ad5304a85382e6d",
+        "mobilesdk_app_id": "1:838891138487:android:b5e2cb0bc80fa4c8cccc32",
         "android_client_info": {
-          "package_name": "com.zaphlabs.knot"
+          "package_name": "com.zaph.loginsignupdesign"
         }
       },
       "oauth_client": [
         {
-          "client_id": "659945107736-phiru218h0h8qt29emdemo4jntfukt2t.apps.googleusercontent.com",
+          "client_id": "838891138487-1a706pck846hbuc9l1g0ojituf1860ae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zaph.loginsignupdesign",
+            "certificate_hash": "d9331ac0018cf9b32d60dd40ea21ff088d446cb8"
+          }
+        },
+        {
+          "client_id": "838891138487-j6v3ruvbk4p43ir3mva8npo8nj89dq8h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyANNtZj7oMOLKljVFXK3WLjeCKGDDRwQCI"
+          "current_key": "AIzaSyCtvdvUWLG9VAIq4TFly9Y19yJkZL9uyzo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "659945107736-phiru218h0h8qt29emdemo4jntfukt2t.apps.googleusercontent.com",
+              "client_id": "838891138487-j6v3ruvbk4p43ir3mva8npo8nj89dq8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838891138487:android:40a1038d74cb5f5bcccc32",
+        "android_client_info": {
+          "package_name": "com.zaphlabs.stufy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838891138487-j6v3ruvbk4p43ir3mva8npo8nj89dq8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtvdvUWLG9VAIq4TFly9Y19yJkZL9uyzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838891138487-j6v3ruvbk4p43ir3mva8npo8nj89dq8h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

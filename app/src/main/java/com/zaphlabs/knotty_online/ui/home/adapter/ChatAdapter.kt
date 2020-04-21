@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.zaphlabs.knotty_online.R
+import com.zaphlabs.knotty_online.data.model.Chat
 import kotlinx.android.synthetic.main.item_view_home_layout.view.*
 
-class AccountAdapter(private var mActivity: Activity, private val accountList:ArrayList<String>, private val recyclerClickListener: RecyclerClickListener  ) :
-    RecyclerView.Adapter<AccountAdapter.ViewHolder>() {
+class ChatAdapter(private var mActivity: Activity, private val accountList:ArrayList<Chat>, private val recyclerClickListener: RecyclerClickListener  ) :
+    RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val rootView=

@@ -11,7 +11,8 @@
             android:roundIcon="@mipmap/ic_launcher"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ui.chat.ChatActivity"></activity>
+        <activity android:name=".ui.contact.ContactActivity"></activity>
+        <activity android:name=".ui.chat.ChatActivity" />
         <activity android:name=".ui.onBoarding.ForgotPasswordActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.onBoarding.SignUpActivity" />

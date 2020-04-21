@@ -161,14 +161,14 @@ class FirebaseSource {
     }
 
     fun getDatabaseReference():DatabaseReference{
-        return firebaseDb.reference.child("messages")
+        return firebaseDb.reference.child("message")
     }
 
     /**
      * Send Message
      */
     fun sendMessage(message: Message) = Completable.create{emitter ->
-        firebaseDb.reference.child("messages").push().setValue(message)
+        firebaseDb.reference.child("message").push().setValue(message)
             .addOnCompleteListener {
                 if(!emitter.isDisposed){
                     if(it.isSuccessful)

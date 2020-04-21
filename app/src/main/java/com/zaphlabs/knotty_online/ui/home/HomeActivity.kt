@@ -14,7 +14,7 @@ import com.zaphlabs.knotty_online.databinding.ActivityHomeBinding
 import com.zaphlabs.knotty_online.ui.onBoarding.LogInActivity
 import com.zaphlabs.knotty_online.ui.base.BaseActivity
 import com.zaphlabs.knotty_online.ui.customView.OptionsDialog
-import com.zaphlabs.knotty_online.ui.home.adapter.AccountAdapter
+import com.zaphlabs.knotty_online.ui.home.adapter.ChatAdapter
 import com.zaphlabs.knotty_online.ui.home.adapter.RecyclerClickListener
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_side_menu.*
@@ -24,6 +24,7 @@ import org.kodein.di.generic.instance
 import android.app.Dialog
 import android.view.animation.AnimationUtils
 import com.zaphlabs.knotty_online.R
+import com.zaphlabs.knotty_online.data.model.Chat
 import com.zaphlabs.knotty_online.ui.chat.ChatActivity
 import com.zaphlabs.knotty_online.utils.*
 import com.zaphlabs.knotty_online.utils.STATUS_CODES
@@ -41,8 +42,8 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
     private val factory: HomeViewModelFactory by instance()
     private lateinit var viewModel: HomeViewModel
     private var mDrawerToggle: ActionBarDrawerToggle? = null
-    private var accountAdapter: AccountAdapter? = null
-    // private var accountList = ArrayList<UserAccount>()
+    private var chatAdapter: ChatAdapter? = null
+    private var chatList = ArrayList<Chat>()
     private var dialog: Dialog? = null
     private var isOpen = false
 
@@ -55,6 +56,8 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
         viewModel.callbackListener = this
         init()
         setNavigationDrawer()
+        setUpRecyclerView()
+        setUpChatListener()
     }
 
     private fun init() {
@@ -97,8 +100,8 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
 
     private fun setUpRecyclerView() {
         rvManageAccount.layoutManager = LinearLayoutManager(this)
-        //accountAdapter = AccountAdapter(this, accountList, this)
-        rvManageAccount.adapter = accountAdapter
+        chatAdapter = ChatAdapter(this, chatList, this)
+        rvManageAccount.adapter = chatAdapter
     }
 
     override fun onClick(v: View?) {
@@ -152,10 +155,10 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
 
             }
             R.id.fbTasks -> {
-                //Open Todo list
+                startActivity(Intent(this@HomeActivity,ChatActivity::class.java))
             }
             R.id.fabAccount -> {
-                startActivity(Intent(this@HomeActivity,ChatActivity::class.java))
+
             }
             R.id.tvFavorites -> {
             }
@@ -193,6 +196,10 @@ class HomeActivity : BaseActivity(), KodeinAware, View.OnClickListener, Callback
         shimmer_view_container.stopShimmerAnimation()
         slSidePlaceholder.stopShimmerAnimation()
         showSnackbar(message, STATUS_CODES.FAILED)
+    }
+
+    private fun setUpChatListener(){
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

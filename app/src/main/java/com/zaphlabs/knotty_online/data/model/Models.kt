@@ -16,3 +16,11 @@ data class Message(
     var photoUrl:String ?= null,
     var messageType:Int?= null
 ):Parcelable
+
+data class Chat(
+    var chatId:String ?= null,
+    var chatImage:String ?= null,
+    var chatReceiverName:String ?= null,
+    var lastMessage: String ?= null,
+    var timestamp:String ?= null
+)

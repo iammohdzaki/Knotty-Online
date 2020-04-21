@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Knot Chat</string>
+    <string name="app_name">Stuffy</string>
     <!-- Root Message -->
     <string name="error_device_rooted">This device is rooted. We are not responsible for any kind of data loss and hack.
         Use it at your own risk!!

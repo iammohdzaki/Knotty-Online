@@ -115,12 +115,18 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
         pbLoadChats.visibility=View.VISIBLE
         mChildEventListener = object : ChildEventListener{
             override fun onCancelled(p0: DatabaseError) {
+                showSnackbar("Cancelled",0)
             }
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+                showSnackbar("Child Moved",0)
+
             }
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                showSnackbar("Child Changes",0)
+
             }
             override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
+                showSnackbar("onChild Added",0)
                 rvChat.visibility=View.VISIBLE
                 pbLoadChats.visibility=View.GONE
                 messageList.add(messageList.size,snapshot.getValue(Message::class.java) ?: Message())
@@ -128,6 +134,8 @@ class ChatActivity : BaseActivity(), KodeinAware,RecyclerClickListener,View.OnCl
                 rvChat.scrollToPosition(chatAdapter!!.itemCount - 1)
             }
             override fun onChildRemoved(p0: DataSnapshot) {
+                showSnackbar("child Removed",0)
+
             }
         }
         viewModel.getDatabaseReference().addChildEventListener(mChildEventListener!!)
