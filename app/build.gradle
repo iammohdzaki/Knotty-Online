@@ -1,13 +1,9 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'com.google.gms.google-services'
-
 apply plugin: 'io.fabric'
-
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 androidExtensions {
     experimental = true
@@ -120,6 +116,12 @@ dependencies {
      * Shimmer Loading
      */
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
+    //Navigation
+    def nav_components = '2.2.1'
+    implementation "androidx.navigation:navigation-runtime-ktx:$nav_components"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_components"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_components"
 
     /**
      * Glide Image Processing
