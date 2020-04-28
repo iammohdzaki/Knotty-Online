@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Events"
+            android:id="@id/events"
+            android:icon="@drawable/ic_home"/>
+
+    <item android:title="Joined Events"
+            android:id="@id/joinedEvents"
+            android:icon="@drawable/ic_discover"/>
+
+    <item android:title="Profile"
+            android:id="@id/profile"
+            android:icon="@drawable/ic_feeds"/>
+
+    <item android:title="About"
+            android:id="@id/about"
+            android:icon="@drawable/ic_about"/>
+
+
+</menu>

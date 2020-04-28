@@ -18,7 +18,6 @@ import com.zaphlabs.knotty_online.R
 import com.zaphlabs.knotty_online.data.model.Message
 import com.zaphlabs.knotty_online.data.remote.CallbackListener
 import com.zaphlabs.knotty_online.databinding.ActivityChatBinding
-import com.zaphlabs.knotty_online.databinding.ActivityHomeBinding
 import com.zaphlabs.knotty_online.ui.base.BaseActivity
 import com.zaphlabs.knotty_online.ui.chat.adapter.ChatAdapter
 import com.zaphlabs.knotty_online.ui.home.adapter.RecyclerClickListener
