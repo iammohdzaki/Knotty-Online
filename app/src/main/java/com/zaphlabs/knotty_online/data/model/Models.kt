@@ -1,6 +1,7 @@
 package com.zaphlabs.knotty_online.data.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 data class User(
@@ -23,4 +24,9 @@ data class Chat(
     var chatReceiverName:String ?= null,
     var lastMessage: String ?= null,
     var timestamp:String ?= null
+)
+
+data class Event(
+    @SerializedName("hostname") var hostName:String="",
+    @SerializedName("hostphone") var hostPhone:String=""
 )

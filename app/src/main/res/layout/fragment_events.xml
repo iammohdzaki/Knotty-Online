@@ -44,6 +44,7 @@
                     android:layout_gravity="center"
                     app:layout_constraintTop_toBottomOf="@id/tvName"
                     android:orientation="vertical"
+                    android:visibility="gone"
                     shimmer:duration="800">
 
                 <!-- Adding 7 rows of placeholders -->
@@ -84,7 +85,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:paddingBottom="@dimen/margin_padding_size_medium"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/glEnd"
                     app:layout_constraintHeight_max="wrap"
